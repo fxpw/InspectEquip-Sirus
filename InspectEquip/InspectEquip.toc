@@ -1,0 +1,24 @@
+﻿## Interface: 30300
+## Title: InspectEquip |r|cFF0038FF[Special for Sirus.su]|r
+## Notes: Shows where the equipment of inspected users or yourself is from.
+## Notes-ruRU: Показывает откуда, одетый на вас, или другого игрока, эквип.
+## Author: emelio (ported by MrS4g0)
+## Version: 1.7.7c
+## OptionalDeps: Ace3, LibBabble-Zone-3.0, LibBabble-Boss-3.0, Examiner, Outfitter, Links, LinkWrangler
+## SavedVariables: InspectEquipConfig
+## X-WoWI-ID: 9509
+## X-Curse-Packaged-Version: 1.7.7
+## X-Curse-Project-Name: InspectEquip
+## X-Curse-Project-ID: inspect-equip
+## X-Curse-Repository-ID: wow/inspect-equip/mainline
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+Locales\Locales.xml
+
+ItemSources.lua
+InfoWindow.xml
+Core.lua
+Tooltips.lua
