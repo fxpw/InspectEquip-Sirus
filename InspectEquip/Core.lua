@@ -989,23 +989,20 @@ function IE:AddItems(tab, padding,event)
 	----------------------------------------------------------------------------------------------------------------------------
 	  
 	 
-	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0) and (noEnchantWarningSlots[item.slot]) then ---- не показывать где не должно
-      suffix = suffix
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0) and (not noEnchantWarningSlots[item.slot]) then ---- не показывать где не должно
+      suffix = "|cffff0000-  Нет чарки|r"..suffix
 	  elseif InspectEquipConfig.checkEnchants and InspectEquipConfig.bug and  (item.enchant == item.enchant) then   --- если нету в базе-------------------------------
-      suffix = "|cffff0000- Нет в базе|r ---> "..item.enchant.."    "..suffix
-	   elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1) and ( not noEnchantWarningSlots[item.slot]) then ---- не бк чарка
-      suffix = "|cffff0000- Нет в базе|r"..suffix
+      suffix = "|cffff0000- Нет в базе пиши репорт|r ---> "..item.enchant.."    "..suffix
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1)  then ---- не бк чарка
+      suffix = "|cffff0000- Не бк чарка|r"..suffix
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0)  then ---- не показывать где не должно х2
+      suffix = "|cffff0000-  Нет чарки|r"..suffix
 	  
 	  -- elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1) and ( lefthand[item.slot]) then    --- на левую руку проверка наложения
       -- suffix = "|cffff0000- Нет Чарки|r  "..suffix
+	 
 	  
-	  elseif InspectEquipConfig.checkEnchants and (item.enchant == 0) and (not noEnchantWarningSlots[item.slot]) then    --- если нету чарки 
-      suffix = "|cffff0000- Нет Чарки|r  "..suffix
-	   elseif InspectEquipConfig.checkEnchants and (item.enchant == item.enchant) then   --- если нету в базе
-      suffix = "|cffff0000- Нет в базе пиши репорт|r  "..item.enchant.."    "..suffix
-	  
-	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0)  then ---- не показывать где не должно х2
-      suffix = suffix
+		   
 	  end
 	   ------------------------------------------------------------------------------------------------------------------------ для разрабов
 	if  InspectEquipConfig.razrab  and (item.enchant == item.enchant)  then --- для разрабов
