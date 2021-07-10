@@ -1,7 +1,7 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("InspectEquip", "ruRU")
 if not L then return end
 
--- Translation by Hemathio + Ingdruid + RustamIrzaev
+-- Translation by Hemathio + Ingdruid + RustamIrzaev + fallafell + fxpw
 L["Accessories"] = "Ассоциации"
 L["Add drop information to tooltips"] = "Отображать информацию о добыче во всплывающих подсказках"
 L["Add item drop information to all item tooltips"] = "Отображать информацию о добыче во всех всплывающих подсказках к предметам"
@@ -59,3 +59,10 @@ L["World PvP"] = "Мировое PvP"
 L["Wrath of the Lich King"] = "ВоЛК"
 L["Show inchant ids"]= "Показывать id чарок"
 L["Show inchant ids in frame after check"]="Показывает id чарок после проверки на наличие чарки"
+L["Check for missing gems"] =" Проверка на сокеты"
+L["Display a warning for items with missing gems"] =" Показывает предупреждение сокетов на итемы"
+L["Item is not socketed"] =" Итем без сокетов"
+L["Button for dev"] =" Кнопка для разработчика "
+L["Shows enchantment not in the database"]=" !!!!!!!!!!!!!Толькое если выключены предыдущие 2 кнопки "
+L["Bug"]=" Поиск багов "
+L["Bug2"]=" Поиск багов чарок которых нету в базе"
