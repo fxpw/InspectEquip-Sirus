@@ -74,7 +74,9 @@ local defaults = {
   listItemLevels = true,
   showAvgItemLevel = true,
    socetc = true,
- 
+   
+   
+   bug = false,
   razrab = false,
  
   ttR = 1.0,
