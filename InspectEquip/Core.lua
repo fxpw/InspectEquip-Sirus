@@ -1277,7 +1277,7 @@ function IE:AddItems(tab, padding,event)
 	 -------------------- в суффикс добавляется инчант если стоит проверка
 	 	 
 	 ------ чарка 
-	 if  InspectEquipConfig.checkEnchants and  InspectEquipConfig.checkEnchantspokaz then
+	 if  InspectEquipConfig.checkEnchants and  InspectEquipConfig.checkEnchantspokaz then                   --- если стоит показывать 
 	 if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
 	 suffix = " - Есть чарка"..suffix
 	 
@@ -1453,6 +1453,8 @@ function IE:AddItems(tab, padding,event)
 	  suffix = " - Есть чарка"..suffix
 	   elseif   (item.enchant == 7024) then -- щит вын
 	  suffix = " - Есть чарка"..suffix
+	  elseif   (item.enchant == 3860) then -- перчи инжа броня
+	  suffix = " - Есть чарка"..suffix
 	  
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 7027) and ( lefthand[item.slot]) then    --- на левую руку щит 37 инты
       suffix = " - Есть чарка"..suffix
@@ -1520,6 +1522,7 @@ function IE:AddItems(tab, padding,event)
 	 suffix = " - Есть чарка"..suffix
 	 elseif   (item.enchant == 10119) then -- дар травника
 	 suffix = " - Есть чарка"..suffix
+	 
 	----------------------------------------------------------------------------------------------------------------------------
 	  
 	 
@@ -1538,7 +1541,7 @@ function IE:AddItems(tab, padding,event)
 	  
 		   end
 	 
-	  elseif   InspectEquipConfig.checkEnchants and not  InspectEquipConfig.checkEnchantspokaz then
+	  elseif   InspectEquipConfig.checkEnchants and not  InspectEquipConfig.checkEnchantspokaz then --------- если стоит не показывать
 	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
 	 suffix = suffix
 	 
@@ -1713,6 +1716,8 @@ function IE:AddItems(tab, padding,event)
 	   elseif   (item.enchant == 7041) then -- пушка метк криит
 	  suffix = suffix
 	   elseif   (item.enchant == 7024) then -- щит вын
+	  suffix = suffix
+	   elseif   (item.enchant == 3860) then -- перчи инжа броня
 	  suffix = suffix
 	  
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 7027) and ( lefthand[item.slot]) then    --- на левую руку щит 37 инты
