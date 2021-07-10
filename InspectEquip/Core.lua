@@ -661,7 +661,7 @@ function IE:AddItems(tab, padding,event)
 	if   (item.unsocet2 == 0) then
 	item.unsocet2 = "|cffff0000  нет |r"
 	
-	elseif (item.unsocet2 == 3734)	or (item.unsocet2 == 9022)  or (item.unsocet1 == 3739)  or (item.unsocet2 == 3745)   	or (item.unsocet2 == 3742)	or (item.unsocet2 == 3293)   	or (item.unsocet2 == 3732)  	or (item.unsocet2 == 3738)  
+	elseif (item.unsocet2 == 3734)	or (item.unsocet2 == 9022)  or (item.unsocet2 == 3739)  or (item.unsocet2 == 3745)   	or (item.unsocet2 == 3742)	or (item.unsocet2 == 3293)   	or (item.unsocet2 == 3732)  	or (item.unsocet2 == 3738)  
 
 	then
 	item.unsocet2 = " бк "              
@@ -1006,6 +1006,14 @@ function IE:AddItems(tab, padding,event)
 	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3789) then  -- берса пушка
+	 suffix = " - Есть чарка"..suffix
+	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7042) then  -- пушка ап бк
+	 suffix = " - Есть чарка"..suffix
+	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3816) then  -- огонь танк голова
+	 suffix = " - Есть чарка"..suffix
+	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3849) then  -- титановая обшивка
+	 suffix = " - Есть чарка"..suffix
+	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7007) then  -- титановая обшивка
 	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
