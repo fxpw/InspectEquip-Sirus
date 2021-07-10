@@ -75,6 +75,9 @@ local defaults = {
   listItemLevels = true,
   showAvgItemLevel = true,
    socetc = true,
+   soketcpokaz = true,
+   checkenchantspokaz = true,
+   
    
    
    bug = false,
@@ -140,22 +143,36 @@ local options = {
       get = function() return InspectEquipConfig.checkEnchants end,
       set = function(_,v) InspectEquipConfig.checkEnchants = v end,
     },
+	 checkenchantspokaz = {
+      order = 8, type = "toggle", width = "full",
+      name = L["Dont hide chants when has"],
+      desc = L["Dont hide chants when has2"],
+      get = function() return InspectEquipConfig.checkEnchantspokaz end,
+      set = function(_,v) InspectEquipConfig.checkEnchantspokaz = v end,
+    },
 	soketc = {
-			order = 8, type = "toggle", width = "full",
+			order = 9, type = "toggle", width = "full",
 			name = L["Check for missing gems"],
 			desc = L["Display a warning for items with missing gems"],
 			get = function() return InspectEquipConfig.soketc end,
 			set = function(_,v) InspectEquipConfig.soketc = v end,
 		},
+		soketcpokaz = {
+			order = 10, type = "toggle", width = "full",
+			name = L["If Check for missing gems dont hide names of soket"],
+			desc = L["If Check for missing gems dont hide names of soket2"],
+			get = function() return InspectEquipConfig.soketcpokaz end,
+			set = function(_,v) InspectEquipConfig.soketcpokaz = v end,
+		},
 	bug = {
-      order = 9, type = "toggle", width = "full",
+      order = 11, type = "toggle", width = "full",
       name = L["Bug"],
       desc = L["Bug2"],
       get = function() return InspectEquipConfig.bug end,
       set = function(_,v) InspectEquipConfig.bug = v end,
     },
 	razrab = {
-      order = 10, type = "toggle", width = "full",
+      order = 12, type = "toggle", width = "full",
       name = L["Button for dev"],
       desc = L["Shows enchantment not in the database"],
       get = function() return InspectEquipConfig.razrab end,
@@ -613,8 +630,8 @@ end
      
    
 	razrab 
-      get = function() return InspectEquipConfig.razrab end,
-      set = function(_,v) InspectEquipConfig.razrab = v end,
+      InspectEquipConfig.razrab
+    
     },
 
 
@@ -627,7 +644,8 @@ function IE:AddItems(tab, padding,event)
 	-- if InspectEquipConfig.seid  then  -------------------------------------------- айди инчантов включены ли
 	-- suffix = suffix..":  "..item.enchant .."  :"
 	-- end
-	if InspectEquipConfig.soketc  then                              -------------------- сокеты включены ли   
+	
+	if InspectEquipConfig.soketc and InspectEquipConfig.soketcpokaz   then                              -------------------- сокеты включены ли   
 	if (item.kolvo == 4 ) then                         ---------- если 4 гема          
 													---------- для 1 гема
 	if   (item.unsocet1 == 0) then
@@ -739,6 +757,8 @@ function IE:AddItems(tab, padding,event)
 		item.unsocet4 = " бк "
 
 	end
+	
+	
 	elseif (item.kolvo == 3 ) then
 	--------------------------------------------- пр гем
 	
@@ -934,188 +954,504 @@ function IE:AddItems(tab, padding,event)
 	
      suffix = suffix.."   "..item.unsocet1.."   "..item.unsocet2.."   "..item.unsocet3.."   "..item.unsocet4.."   " ------ в суффикс добавляется сокеты
 	 
-	 else suffix = suffix 
+	
+	
+	
+	
+	elseif InspectEquipConfig.soketc and not InspectEquipConfig.soketcpokaz   then  
+	                         -------------------- сокеты  включены ли    не показывать если есть бк
+	if (item.kolvo == 4 ) then                         ---------- если 4 гема          
+													---------- для 1 гема
+	if   (item.unsocet1 == 0) then
+	item.unsocet1 = "|cffff0000  нет |r"
+	------------------------------------------------------------------------------ все сокеты бк и +50
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3739)   --   50 хасты
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	then
+	item.unsocet1 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )   then 
+	item.unsocet1 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet1 > 4000) then
+		item.unsocet1 = "  "	
+	end
+	
+	--------------------------------------------- вт гем
+	if   (item.unsocet2 == 0) then
+	item.unsocet2 = "|cffff0000  нет |r"
+	
+	elseif (item.unsocet2 == 3734) -- 58 спд
+	or (item.unsocet2 == 9022)   --  42 спд
+	or (item.unsocet2 == 3745)   --   50 рпб
+	or (item.unsocet2 == 3739)   --   50 хасты
+	or (item.unsocet2 == 3742)   --   50 хит
+	or (item.unsocet2 == 3293)   --   75 вын
+	or (item.unsocet2 == 3732)  --    50 силы
+	or (item.unsocet2 == 3738)  --    крита силы
+	
+	then
+	item.unsocet2 = "  "              
+	
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	item.unsocet2 = "|cffff0000  лк |r"
+	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
+	item.unsocet2 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet2 > 4000) then
+		item.unsocet2 = "  "	
+	end
+	
+	------------------------------------------- тр гем
+	if   (item.unsocet3 == 0) then
+	item.unsocet3 = "|cffff0000  нет |r"
+	elseif (item.unsocet3 == 3734) -- 58 спд
+	or (item.unsocet3 == 9022)   --  42 спд
+	or (item.unsocet3 == 3745)   --   50 рпб
+	or (item.unsocet3 == 3739)   --   50 хасты
+	or (item.unsocet3 == 3742)   --   50 хит
+	or (item.unsocet3 == 3293)   --   75 вын
+	or (item.unsocet3 == 3732)  --    50 силы
+	or (item.unsocet3 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet3 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	item.unsocet3 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
+	item.unsocet3 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet3 > 4000) then
+		item.unsocet3 = "  "	
+	end
+	------------------------------------------- чт гем
+	if   (item.unsocet4 == 0) then
+	item.unsocet4 = "|cffff0000  нет |r"
+	elseif (item.unsocet4 == 3734) -- 58 спд
+	or (item.unsocet4 == 9022)   --  42 спд
+	or (item.unsocet4 == 3745)   --   50 рпб
+	or (item.unsocet4 == 3742)   --   50 хит
+	or (item.unsocet4 == 3739)   --   50 хасты
+	or (item.unsocet4 == 3293)   --   75 вын
+	or (item.unsocet4 == 3732)  --    50 силы
+	or (item.unsocet4 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet4 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet4 == 6070) or  (item.unsocet4 == 6090)  or  (item.unsocet4 == 6057) then
+	item.unsocet4 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet4 < 4000) and (item.unsocet4 > 0 )  then 
+	item.unsocet4 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet4 > 4000) then
+		item.unsocet4 = "  "
+
+	end
+	
+	elseif (item.kolvo == 3 ) then
+	--------------------------------------------- пр гем
+	
+	if   (item.unsocet1 == 0) then
+	item.unsocet1 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet1 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
+	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
+	item.unsocet1 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet1 > 4000) then
+		item.unsocet1 = "  "	
+	end
+	--------------------------------------------- вт гем
+	if   (item.unsocet2 == 0) then
+	item.unsocet2 = "|cffff0000  нет |r"
+	elseif (item.unsocet2 == 3734) -- 58 спд
+	or (item.unsocet2 == 9022)   --  42 спд
+	or (item.unsocet2 == 3745)   --   50 рпб
+	or (item.unsocet2 == 3742)   --   50 хит
+	or (item.unsocet2 == 3739)   --   50 хасты
+	or (item.unsocet2 == 3293)   --   75 вын
+	or (item.unsocet2 == 3732)  --    50 силы
+	or (item.unsocet2 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet2 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	item.unsocet2 = "|cffff0000  лк |r"
+	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
+	item.unsocet2 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet2 > 4000) then
+		item.unsocet2 = "  "	
+	end
+	
+	------------------------------------------- тр гем
+	if   (item.unsocet3 == 0) then
+	item.unsocet3 = "|cffff0000  нет |r"
+	elseif (item.unsocet3 == 3734) -- 58 спд
+	or (item.unsocet3 == 9022)   --  42 спд
+	or (item.unsocet3 == 3745)   --   50 рпб
+	or (item.unsocet3 == 3742)   --   50 хит
+	or (item.unsocet3 == 3739)   --   50 хасты
+	or (item.unsocet3 == 3293)   --   75 вын
+	or (item.unsocet3 == 3732)  --    50 силы
+	or (item.unsocet3 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet3 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	item.unsocet3 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
+	item.unsocet3 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet3 > 4000) then
+		item.unsocet3 = "  "	
+	end
+	
+	elseif (item.kolvo == 2 ) then
+	--------------------------------------------- пр гем
+	
+	if   (item.unsocet1 == 0) then
+	item.unsocet1 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet1 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
+	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
+	item.unsocet1 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet1 > 4000) then
+		item.unsocet1 = "  "	
+	end
+	--------------------------------------------- вт гем
+	if   (item.unsocet2 == 0) then
+	item.unsocet2 = "|cffff0000  нет |r"
+	elseif (item.unsocet2 == 3734) -- 58 спд
+	or (item.unsocet2 == 9022)   --  42 спд
+	or (item.unsocet2 == 3745)   --   50 рпб
+	or (item.unsocet2 == 3739)   --   50 хасты
+	or (item.unsocet2 == 3742)   --   50 хит
+	or (item.unsocet2 == 3293)   --   75 вын
+	or (item.unsocet2 == 3732)  --    50 силы
+	or (item.unsocet2 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet2 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
+	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
+	item.unsocet2 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet2 > 4000) then
+		item.unsocet2 = "  "	
+	end
+	
+	elseif (item.kolvo == 1 ) then
+	--------------------------------------------- пр гем
+	
+	if   (item.unsocet1 == 0) then
+	item.unsocet1 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3739)   --   50 хасты
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet1 = "  "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
+	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
+	item.unsocet1 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet1 > 4000) then
+		item.unsocet1 = "  "	
+	end
+	end
+	
+	if (item.unsocet4 == 0) then
+	item.unsocet4 = " "
+	else item.unsocet4 = item.unsocet4 
+	end
+	
+	if (item.unsocet3 == 0) then
+	item.unsocet3 = " "
+	else item.unsocet3 = item.unsocet3 
+	end
+	
+	if (item.unsocet2 == 0) then
+	item.unsocet2 = " "
+	else item.unsocet2 = item.unsocet2 
+	end
+	
+	if (item.unsocet1 == 0) then
+	item.unsocet1 = " "
+	else item.unsocet1 = item.unsocet1 
+	end
+	
+     suffix = suffix.."   "..item.unsocet1.."   "..item.unsocet2.."   "..item.unsocet3.."   "..item.unsocet4.."   " ------ в суффикс добавляется сокеты
+	 
+	 
 	 
 	end
-	 --------------------
-	 --------------
-	 -------------------- в суффикс добавляется инчант есть надо
-	 -------------
-	 ---------------------------------------------------------------------------------------------------------------------------------- пве
-	 if InspectEquipConfig.checkEnchants  and (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
+	
+	
+	 
+	 -------------------- в суффикс добавляется инчант если стоит проверка
+	 	 
+	 ------ чарка 
+	 if  InspectEquipConfig.checkEnchants and  InspectEquipConfig.checkEnchantspokaz then
+	 if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
+	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7011) and (not noEnchantWarningSlots[item.slot])then -- грудь +15 бк
+	 elseif   (item.enchant == 7011) and (not noEnchantWarningSlots[item.slot])then -- грудь +15 бк
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3756) and (not noEnchantWarningSlots[item.slot])then --запы ап кожевка
+	 elseif   (item.enchant == 3756) and (not noEnchantWarningSlots[item.slot])then --запы ап кожевка
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7022) and (not noEnchantWarningSlots[item.slot])then --перчи ап +66
+	 elseif   (item.enchant == 7022) and (not noEnchantWarningSlots[item.slot])then --перчи ап +66
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9001) and (not noEnchantWarningSlots[item.slot])then --ноги бк мили
+	 elseif   (item.enchant == 9001) and (not noEnchantWarningSlots[item.slot])then --ноги бк мили
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3368) and (not noEnchantWarningSlots[item.slot])then --пушка дк сила
+	  elseif   (item.enchant == 3368) and (not noEnchantWarningSlots[item.slot])then --пушка дк сила
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7015) and (not noEnchantWarningSlots[item.slot])then --ступни +18
+	 elseif   (item.enchant == 7015) and (not noEnchantWarningSlots[item.slot])then --ступни +18
 	suffix = " - Есть чарка"..suffix
 	
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3730) and (not noEnchantWarningSlots[item.slot])then -- плащ ап портняга
+	  elseif   (item.enchant == 3730) and (not noEnchantWarningSlots[item.slot])then -- плащ ап портняга
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9003) and (not noEnchantWarningSlots[item.slot])then -- спд дух бк ноги
+	 elseif   (item.enchant == 9003) and (not noEnchantWarningSlots[item.slot])then -- спд дух бк ноги
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7014) and (not noEnchantWarningSlots[item.slot])then -- выносливость увеличение скорости ботинки бк
+	 elseif   (item.enchant == 7014) and (not noEnchantWarningSlots[item.slot])then -- выносливость увеличение скорости ботинки бк
 	suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3838) and (not noEnchantWarningSlots[item.slot])then --  пелчи спд крит начерталка
+	 elseif   (item.enchant == 3838) and (not noEnchantWarningSlots[item.slot])then --  пелчи спд крит начерталка
 	suffix = " - Есть чарка"..suffix
 	 
 	
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7033) and (not noEnchantWarningSlots[item.slot])then -- перчи спд бк
+	 elseif   (item.enchant == 7033) and (not noEnchantWarningSlots[item.slot])then -- перчи спд бк
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3820) and (not noEnchantWarningSlots[item.slot])then -- голова спд крит
+	 elseif   (item.enchant == 3820) and (not noEnchantWarningSlots[item.slot])then -- голова спд крит
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7021) and (not noEnchantWarningSlots[item.slot])then -- перчи спд
+	 elseif   (item.enchant == 7021) and (not noEnchantWarningSlots[item.slot])then -- перчи спд
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7043) and (not noEnchantWarningSlots[item.slot])then -- 121 спд посох
+	 elseif   (item.enchant == 7043) and (not noEnchantWarningSlots[item.slot])then -- 121 спд посох
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3722) and (not noEnchantWarningSlots[item.slot])then -- светлотканная портняга
+	 elseif   (item.enchant == 3722) and (not noEnchantWarningSlots[item.slot])then -- светлотканная портняга
 	suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9013) and (not noEnchantWarningSlots[item.slot])then -- плечи спд 
+	 elseif   (item.enchant == 9013) and (not noEnchantWarningSlots[item.slot])then -- плечи спд 
 	 suffix = " - Есть чарка"..suffix
 	
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7039) and (not noEnchantWarningSlots[item.slot])then -- спд бк одноруч
+	 elseif   (item.enchant == 7039) and (not noEnchantWarningSlots[item.slot])then -- спд бк одноруч
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7032) and (not noEnchantWarningSlots[item.slot])then -- 75 апа бк
+	 elseif   (item.enchant == 7032) and (not noEnchantWarningSlots[item.slot])then -- 75 апа бк
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7000) and (not noEnchantWarningSlots[item.slot])then -- хаста плащ
+	 elseif   (item.enchant == 7000) and (not noEnchantWarningSlots[item.slot])then -- хаста плащ
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3604) and (not noEnchantWarningSlots[item.slot])then -- инжа перчи
+	 elseif   (item.enchant == 3604) and (not noEnchantWarningSlots[item.slot])then -- инжа перчи
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3606) and (not noEnchantWarningSlots[item.slot])then -- инжа боты
+	 elseif   (item.enchant == 3606) and (not noEnchantWarningSlots[item.slot])then -- инжа боты
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3789) then  -- берса пушка
+	 elseif   (item.enchant == 3789) then  -- берса пушка
 	 suffix = " - Есть чарка"..suffix
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7042) then  -- пушка ап бк
+	  elseif   (item.enchant == 7042) then  -- пушка ап бк
 	 suffix = " - Есть чарка"..suffix
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3816) then  -- огонь танк голова
+	  elseif   (item.enchant == 3816) then  -- огонь танк голова
 	 suffix = " - Есть чарка"..suffix
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3849) then  -- титановая обшивка
+	 elseif   (item.enchant == 3849) then  -- титановая обшивка
 	 suffix = " - Есть чарка"..suffix
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7007) then  -- титановая обшивка
-	 suffix = " - Есть чарка"..suffix
-	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
+	 elseif   (item.enchant == 7007) then  -- титановая обшивка
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7006) and (not noEnchantWarningSlots[item.slot])then -- лвк бк
+	 elseif   (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3815) and (not noEnchantWarningSlots[item.slot])then -- тайная голова
+	 elseif   (item.enchant == 7006) and (not noEnchantWarningSlots[item.slot])then -- лвк бк
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9012) and (not noEnchantWarningSlots[item.slot])then -- плечи танк
+	  elseif   (item.enchant == 3815) and (not noEnchantWarningSlots[item.slot])then -- тайная голова
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7005) and (not noEnchantWarningSlots[item.slot])then -- плащ танк 
+	 elseif   (item.enchant == 9012) and (not noEnchantWarningSlots[item.slot])then -- плечи танк
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3297) and (not noEnchantWarningSlots[item.slot])then -- 275 хп грудь 
+	  elseif   (item.enchant == 7005) and (not noEnchantWarningSlots[item.slot])then -- плащ танк 
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3757) and (not noEnchantWarningSlots[item.slot])then -- 150 вын запы
+	 elseif   (item.enchant == 3297) and (not noEnchantWarningSlots[item.slot])then -- 275 хп грудь 
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7020) and (not noEnchantWarningSlots[item.slot])then -- кисти  танк
+	 elseif   (item.enchant == 3757) and (not noEnchantWarningSlots[item.slot])then -- 150 вын запы
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9000) and (not noEnchantWarningSlots[item.slot])then -- танк ноги
+	  elseif   (item.enchant == 7020) and (not noEnchantWarningSlots[item.slot])then -- кисти  танк
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7012) and (not noEnchantWarningSlots[item.slot])then -- танк боты
+	 elseif   (item.enchant == 9000) and (not noEnchantWarningSlots[item.slot])then -- танк ноги
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3370) and (not noEnchantWarningSlots[item.slot])then -- танк дк чарка
+	  elseif   (item.enchant == 7012) and (not noEnchantWarningSlots[item.slot])then -- танк боты
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3835) and (not noEnchantWarningSlots[item.slot])then -- плечи ап начерталка
+	  elseif   (item.enchant == 3370) and (not noEnchantWarningSlots[item.slot])then -- танк дк чарка
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3758) and (not noEnchantWarningSlots[item.slot])then -- запы спд кожевка
+	 elseif   (item.enchant == 3835) and (not noEnchantWarningSlots[item.slot])then -- плечи ап начерталка
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3761) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот темной
+	  elseif   (item.enchant == 3758) and (not noEnchantWarningSlots[item.slot])then -- запы спд кожевка
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3760) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот льду
+	 elseif   (item.enchant == 3761) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот темной
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3762) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот природе
+	 elseif   (item.enchant == 3760) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот льду
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3605) and (not noEnchantWarningSlots[item.slot])then -- инжа спина крит
+	 elseif   (item.enchant == 3762) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот природе
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 2673) and (not noEnchantWarningSlots[item.slot])then -- мангуст
+	 elseif   (item.enchant == 3605) and (not noEnchantWarningSlots[item.slot])then -- инжа спина крит
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3847) and (not noEnchantWarningSlots[item.slot])then -- дк танк чарка
+	 elseif   (item.enchant == 2673) and (not noEnchantWarningSlots[item.slot])then -- мангуст
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3763) and (not noEnchantWarningSlots[item.slot])then -- запы аркан
+	 elseif   (item.enchant == 3847) and (not noEnchantWarningSlots[item.slot])then -- дк танк чарка
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3818) and (not noEnchantWarningSlots[item.slot])then -- танк вын деф
+	  elseif   (item.enchant == 3763) and (not noEnchantWarningSlots[item.slot])then -- запы аркан
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3812) and (not noEnchantWarningSlots[item.slot])then -- танк лед деф
+	  elseif   (item.enchant == 3818) and (not noEnchantWarningSlots[item.slot])then -- танк вын деф
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7013) and (not noEnchantWarningSlots[item.slot])then -- дд 48 ап
+	 elseif   (item.enchant == 3812) and (not noEnchantWarningSlots[item.slot])then -- танк лед деф
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7008) and (not noEnchantWarningSlots[item.slot])then -- 33 защиты грудь
+	 elseif   (item.enchant == 7013) and (not noEnchantWarningSlots[item.slot])then -- дд 48 ап
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3869) and (not noEnchantWarningSlots[item.slot])then -- отведение удара
+	 elseif   (item.enchant == 7008) and (not noEnchantWarningSlots[item.slot])then -- 33 защиты грудь
 	 suffix = " - Есть чарка"..suffix
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7034) and (not noEnchantWarningSlots[item.slot])then -- запы вын
+	  elseif   (item.enchant == 3869) and (not noEnchantWarningSlots[item.slot])then -- отведение удара
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3883) and (not noEnchantWarningSlots[item.slot])then -- руна нерубского дк
+	  elseif   (item.enchant == 7034) and (not noEnchantWarningSlots[item.slot])then -- запы вын
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3852) and (not noEnchantWarningSlots[item.slot])then -- плечи пвп танковские???????????
+	 elseif   (item.enchant == 3883) and (not noEnchantWarningSlots[item.slot])then -- руна нерубского дк
+	 suffix = " - Есть чарка"..suffix
+	 
+	 elseif   (item.enchant == 3852) and (not noEnchantWarningSlots[item.slot])then -- плечи пвп танковские???????????
 	 suffix = " - Есть чарка"..suffix.."|cffff0000  пвпп|r"
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3728) and (not noEnchantWarningSlots[item.slot])then -- плащ хил портняга
+	 elseif   (item.enchant == 3728) and (not noEnchantWarningSlots[item.slot])then -- плащ хил портняга
 	  suffix = " - Есть чарка"..suffix
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3813) and (not noEnchantWarningSlots[item.slot])then -- голова природа
+	  elseif   (item.enchant == 3813) and (not noEnchantWarningSlots[item.slot])then -- голова природа
 	  suffix = " - Есть чарка"..suffix
-	   elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7023) then -- щит 30 рейта блока
+	   elseif   (item.enchant == 7023) then -- щит 30 рейта блока
 	  suffix = " - Есть чарка"..suffix
-	   elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7041) then -- пушка метк криит
+	   elseif   (item.enchant == 7041) then -- пушка метк криит
 	  suffix = " - Есть чарка"..suffix
-	   elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7024) then -- щит вын
+	   elseif   (item.enchant == 7024) then -- щит вын
 	  suffix = " - Есть чарка"..suffix
 	  
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 7027) and ( lefthand[item.slot]) then    --- на левую руку щит 37 инты
@@ -1126,63 +1462,63 @@ function IE:AddItems(tab, padding,event)
       suffix = " - Есть чарка"..suffix
 	  elseif InspectEquipConfig.checkEnchants and (item.enchant == 3791) and ( kolca[item.slot]) then    --- кольцо вын инчант
       suffix = " - Есть чарка"..suffix
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 4176) then -- пушка ханта крит
+	  elseif   (item.enchant == 4176) then -- пушка ханта крит
 	 suffix = " - Есть чарка"..suffix
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3790) then -- черная магия
+	  elseif   (item.enchant == 3790) then -- черная магия
 	 suffix = " - Есть чарка"..suffix
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9011) then -- спд мп5
+	 elseif   (item.enchant == 9011) then -- спд мп5
 	 suffix = " - Есть чарка"..suffix
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3859) then -- плащ инжа
+	  elseif   (item.enchant == 3859) then -- плащ инжа
 	 suffix = " - Есть чарка"..suffix
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3370) then -- ледяного жара
+	 elseif   (item.enchant == 3370) then -- ледяного жара
 	 suffix = " - Есть чарка"..suffix
-	   -- elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7027) and (not noEnchantWarningSlots[item.slot])then -- щит 37 инты
+	   -- elseif   (item.enchant == 7027) and (not noEnchantWarningSlots[item.slot])then -- щит 37 инты
 	  -- suffix = " - Есть чарка"..suffix
 	  
-	  -- elseif InspectEquipConfig.checkEnchants  and (item.enchant == ) and (not noEnchantWarningSlots[item.slot])then --
+	  -- elseif   (item.enchant == ) and (not noEnchantWarningSlots[item.slot])then --
 	 -- suffix = " - Есть чарка"..suffix
 	 
 	 ------------------------------------------------------------------------------------------------------------------------ пвп
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3603) and (not noEnchantWarningSlots[item.slot])then -- перчи урон пвп
+	 elseif   (item.enchant == 3603) and (not noEnchantWarningSlots[item.slot])then -- перчи урон пвп
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7004) and (not noEnchantWarningSlots[item.slot])then -- пенетра
+	 elseif   (item.enchant == 7004) and (not noEnchantWarningSlots[item.slot])then -- пенетра
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 4217) and (not noEnchantWarningSlots[item.slot])then -- калчедановая цепь на оружие
+	  elseif   (item.enchant == 4217) and (not noEnchantWarningSlots[item.slot])then -- калчедановая цепь на оружие
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
-	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3796) and (not noEnchantWarningSlots[item.slot])then -- плечи пвп ап
+	  elseif   (item.enchant == 3796) and (not noEnchantWarningSlots[item.slot])then -- плечи пвп ап
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7009) and (not noEnchantWarningSlots[item.slot])then -- грудь 30 реса
+	 elseif   (item.enchant == 7009) and (not noEnchantWarningSlots[item.slot])then -- грудь 30 реса
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3795) and (not noEnchantWarningSlots[item.slot])then -- голова ап рес
+	 elseif   (item.enchant == 3795) and (not noEnchantWarningSlots[item.slot])then -- голова ап рес
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3793) and (not noEnchantWarningSlots[item.slot])then -- пречи ап рес
+	 elseif   (item.enchant == 3793) and (not noEnchantWarningSlots[item.slot])then -- пречи ап рес
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3878) and (not noEnchantWarningSlots[item.slot])then -- голова удар пвп инжа
+	 elseif   (item.enchant == 3878) and (not noEnchantWarningSlots[item.slot])then -- голова удар пвп инжа
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3245) and (not noEnchantWarningSlots[item.slot])then -- грудь рес
+	 elseif   (item.enchant == 3245) and (not noEnchantWarningSlots[item.slot])then -- грудь рес
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3601) and ( pozs[item.slot])then -- пояс пвп 
+	 elseif   (item.enchant == 3601) and ( pozs[item.slot])then -- пояс пвп 
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3797) then -- голова спд пвп
+	 elseif   (item.enchant == 3797) then -- голова спд пвп
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3794) then -- плечи спд пвп
+	 elseif   (item.enchant == 3794) then -- плечи спд пвп
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9002) then -- грудь спд пвп
+	 elseif   (item.enchant == 9002) then -- грудь спд пвп
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 
 	 
 	 ------------------------------------------------------------------------------------------------------------------------ толгород
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 10124) then -- дар искателя
+	 elseif   (item.enchant == 10124) then -- дар искателя
 	 suffix = " - Есть чарка"..suffix
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 10119) then -- дар травника
+	 elseif   (item.enchant == 10119) then -- дар травника
 	 suffix = " - Есть чарка"..suffix
 	----------------------------------------------------------------------------------------------------------------------------
 	  
@@ -1200,14 +1536,280 @@ function IE:AddItems(tab, padding,event)
       -- suffix = "|cffff0000- Нет Чарки|r  "..suffix
 	 
 	  
+		   end
+	 
+	  elseif   InspectEquipConfig.checkEnchants and not  InspectEquipConfig.checkEnchantspokaz then
+	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7011) and (not noEnchantWarningSlots[item.slot])then -- грудь +15 бк
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3756) and (not noEnchantWarningSlots[item.slot])then --запы ап кожевка
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7022) and (not noEnchantWarningSlots[item.slot])then --перчи ап +66
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 9001) and (not noEnchantWarningSlots[item.slot])then --ноги бк мили
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3368) and (not noEnchantWarningSlots[item.slot])then --пушка дк сила
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7015) and (not noEnchantWarningSlots[item.slot])then --ступни +18
+	suffix = suffix
+	
+	  elseif   (item.enchant == 3730) and (not noEnchantWarningSlots[item.slot])then -- плащ ап портняга
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 9003) and (not noEnchantWarningSlots[item.slot])then -- спд дух бк ноги
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7014) and (not noEnchantWarningSlots[item.slot])then -- выносливость увеличение скорости ботинки бк
+	suffix = suffix
+	 
+	 elseif   (item.enchant == 3838) and (not noEnchantWarningSlots[item.slot])then --  пелчи спд крит начерталка
+	suffix = suffix
+	 
+	
+	 elseif   (item.enchant == 7033) and (not noEnchantWarningSlots[item.slot])then -- перчи спд бк
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3820) and (not noEnchantWarningSlots[item.slot])then -- голова спд крит
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7021) and (not noEnchantWarningSlots[item.slot])then -- перчи спд
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7043) and (not noEnchantWarningSlots[item.slot])then -- 121 спд посох
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3722) and (not noEnchantWarningSlots[item.slot])then -- светлотканная портняга
+	suffix = suffix
+	 
+	 elseif   (item.enchant == 9013) and (not noEnchantWarningSlots[item.slot])then -- плечи спд 
+	 suffix = suffix
+	
+	 elseif   (item.enchant == 7039) and (not noEnchantWarningSlots[item.slot])then -- спд бк одноруч
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7032) and (not noEnchantWarningSlots[item.slot])then -- 75 апа бк
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7000) and (not noEnchantWarningSlots[item.slot])then -- хаста плащ
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3604) and (not noEnchantWarningSlots[item.slot])then -- инжа перчи
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3606) and (not noEnchantWarningSlots[item.slot])then -- инжа боты
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3789) then  -- берса пушка
+	 suffix = suffix
+	  elseif   (item.enchant == 7042) then  -- пушка ап бк
+	 suffix = suffix
+	  elseif   (item.enchant == 3816) then  -- огонь танк голова
+	 suffix = suffix
+	 elseif   (item.enchant == 3849) then  -- титановая обшивка
+	 suffix = suffix
+	 elseif   (item.enchant == 7007) then  -- титановая обшивка
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7006) and (not noEnchantWarningSlots[item.slot])then -- лвк бк
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3815) and (not noEnchantWarningSlots[item.slot])then -- тайная голова
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 9012) and (not noEnchantWarningSlots[item.slot])then -- плечи танк
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 7005) and (not noEnchantWarningSlots[item.slot])then -- плащ танк 
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3297) and (not noEnchantWarningSlots[item.slot])then -- 275 хп грудь 
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3757) and (not noEnchantWarningSlots[item.slot])then -- 150 вын запы
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 7020) and (not noEnchantWarningSlots[item.slot])then -- кисти  танк
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 9000) and (not noEnchantWarningSlots[item.slot])then -- танк ноги
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 7012) and (not noEnchantWarningSlots[item.slot])then -- танк боты
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3370) and (not noEnchantWarningSlots[item.slot])then -- танк дк чарка
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3835) and (not noEnchantWarningSlots[item.slot])then -- плечи ап начерталка
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3758) and (not noEnchantWarningSlots[item.slot])then -- запы спд кожевка
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3761) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот темной
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3760) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот льду
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3762) and (not noEnchantWarningSlots[item.slot])then -- запы сопрот природе
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3605) and (not noEnchantWarningSlots[item.slot])then -- инжа спина крит
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 2673) and (not noEnchantWarningSlots[item.slot])then -- мангуст
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3847) and (not noEnchantWarningSlots[item.slot])then -- дк танк чарка
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3763) and (not noEnchantWarningSlots[item.slot])then -- запы аркан
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3818) and (not noEnchantWarningSlots[item.slot])then -- танк вын деф
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3812) and (not noEnchantWarningSlots[item.slot])then -- танк лед деф
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7013) and (not noEnchantWarningSlots[item.slot])then -- дд 48 ап
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7008) and (not noEnchantWarningSlots[item.slot])then -- 33 защиты грудь
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3869) and (not noEnchantWarningSlots[item.slot])then -- отведение удара
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 7034) and (not noEnchantWarningSlots[item.slot])then -- запы вын
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3883) and (not noEnchantWarningSlots[item.slot])then -- руна нерубского дк
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3852) and (not noEnchantWarningSlots[item.slot])then -- плечи пвп танковские???????????
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3728) and (not noEnchantWarningSlots[item.slot])then -- плащ хил портняга
+	  suffix = suffix
+	  elseif   (item.enchant == 3813) and (not noEnchantWarningSlots[item.slot])then -- голова природа
+	  suffix = suffix
+	   elseif   (item.enchant == 7023) then -- щит 30 рейта блока
+	  suffix = suffix
+	   elseif   (item.enchant == 7041) then -- пушка метк криит
+	  suffix = suffix
+	   elseif   (item.enchant == 7024) then -- щит вын
+	  suffix = suffix
+	  
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 7027) and ( lefthand[item.slot]) then    --- на левую руку щит 37 инты
+      suffix = suffix
+	  elseif InspectEquipConfig.checkEnchants and (item.enchant == 3839) and ( kolca[item.slot]) then    --- кольцо ап инчант
+      suffix = suffix
+	  elseif InspectEquipConfig.checkEnchants and (item.enchant == 3840) and ( kolca[item.slot]) then    --- кольцо спд инчант
+      suffix = suffix
+	  elseif InspectEquipConfig.checkEnchants and (item.enchant == 3791) and ( kolca[item.slot]) then    --- кольцо вын инчант
+      suffix = suffix
+	  elseif   (item.enchant == 4176) then -- пушка ханта крит
+	 suffix = suffix
+	  elseif   (item.enchant == 3790) then -- черная магия
+	 suffix = suffix
+	 elseif   (item.enchant == 9011) then -- спд мп5
+	 suffix = suffix
+	  elseif   (item.enchant == 3859) then -- плащ инжа
+	 suffix = suffix
+	 elseif   (item.enchant == 3370) then -- ледяного жара
+	 suffix = suffix
+	   -- elseif   (item.enchant == 7027) and (not noEnchantWarningSlots[item.slot])then -- щит 37 инты
+	  -- suffix = suffix
+	  
+	  -- elseif   (item.enchant == ) and (not noEnchantWarningSlots[item.slot])then --
+	 -- suffix = suffix
+	 
+	 ------------------------------------------------------------------------------------------------------------------------ пвп
+	 elseif   (item.enchant == 3603) and (not noEnchantWarningSlots[item.slot])then -- перчи урон пвп
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7004) and (not noEnchantWarningSlots[item.slot])then -- пенетра
+	 suffix = suffix
+	 
+	 
+	  elseif   (item.enchant == 4217) and (not noEnchantWarningSlots[item.slot])then -- калчедановая цепь на оружие
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3796) and (not noEnchantWarningSlots[item.slot])then -- плечи пвп ап
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 7009) and (not noEnchantWarningSlots[item.slot])then -- грудь 30 реса
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3795) and (not noEnchantWarningSlots[item.slot])then -- голова ап рес
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3793) and (not noEnchantWarningSlots[item.slot])then -- пречи ап рес
+	 suffix = suffix
+	 
+	 elseif   (item.enchant == 3878) and (not noEnchantWarningSlots[item.slot])then -- голова удар пвп инжа
+	 suffix = suffix
+	 elseif   (item.enchant == 3245) and (not noEnchantWarningSlots[item.slot])then -- грудь рес
+	 suffix = suffix
+	 elseif   (item.enchant == 3601) and ( pozs[item.slot])then -- пояс пвп 
+	 suffix = suffix
+	 elseif   (item.enchant == 3797) then -- голова спд пвп
+	 suffix = suffix
+	 elseif   (item.enchant == 3794) then -- плечи спд пвп
+	 suffix = suffix
+	 elseif   (item.enchant == 9002) then -- грудь спд пвп
+	 suffix = suffix
+	 
+	 
+	 ------------------------------------------------------------------------------------------------------------------------ толгород
+	 elseif   (item.enchant == 10124) then -- дар искателя
+	 suffix = suffix
+	 elseif   (item.enchant == 10119) then -- дар травника
+	 suffix = suffix
+	----------------------------------------------------------------------------------------------------------------------------
+	  
+	 
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0) and (not noEnchantWarningSlots[item.slot]) then ---- не показывать где не должно
+      suffix = "|cffff0000- Нет чарки|r"..suffix
+	  elseif InspectEquipConfig.checkEnchants and InspectEquipConfig.bug and  (item.enchant == item.enchant) then   --- если нету в базе-------------------------------
+      suffix = "|cffff0000- Нет в базе пиши репорт|r ---> "..item.enchant.."    "..suffix
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1)  then ---- не бк чарка
+      suffix = "|cffff0000- Не бк чарка|r"..suffix
+	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0)  then ---- не показывать где не должно х2
+      suffix = "|cffff0000-|r"..suffix
+	  
+	  -- elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1) and ( lefthand[item.slot]) then    --- на левую руку проверка наложения
+      -- suffix = "|cffff0000- Нет Чарки|r  "..suffix
+	 
+	  
 		   
+	  
+	  
+	  
+	 end
+	
 	  end
 	   ------------------------------------------------------------------------------------------------------------------------ для разрабов
 	if  InspectEquipConfig.razrab  and (item.enchant == item.enchant)  then --- для разрабов
       suffix = "|cffff0000 чарка айди ---> "..item.enchant.."      сокеты айди  ---> |r" ..item.perehod1.."   "..item.perehod2.."   "..item.perehod3.."   "..item.perehod4.."   "..item.kolvo
+   
     
-    
-    end
+  end
 	 
 	 
 	
@@ -1223,8 +1825,8 @@ function IE:AddItems(tab, padding,event)
 	
     self:AddLine(prefix .. item.link .. suffix, item.link, item)
   end
-end
 
+end
 
 local srctypes_d = { -- Instances
   ["n"] = L["Normal"], ["h"] = L["Heroic"], ["q"] = L["Quest Reward"], 
