@@ -13,10 +13,10 @@ InspectEquip_ItemSources = {
     [64] = BZ["Naxxramas"] or "Naxxramas",
     [80] = BZ["Onyxia's Lair"] or "Onyxia's Lair",
     [82] = BZ["Ruins of Ahn'Qiraj"] or "Ruins of Ahn'Qiraj",
-    [89] = BZ["Serpentshrine Cavern"] or "Serpentshrine Cavern",
+    [89] = BZ["Serpentshrine Cavern"] or "Serpentshrine Cavern",----- Зс
     [96] = BZ["Sunwell Plateau"] or "Sunwell Plateau",
     [103] = BZ["Temple of Ahn'Qiraj"] or "Temple of Ahn'Qiraj",
-    [116] = BZ["The Eye"] or "The Eye",
+    [116] = BZ["The Eye"] or "The Eye",             ------------ око
     [121] = BZ["The Eye of Eternity"] or "The Eye of Eternity",
     [123] = BZ["The Obsidian Sanctum"] or "The Obsidian Sanctum",
     [125] = BZ["Ulduar"] or "Ulduar",
@@ -79,6 +79,7 @@ InspectEquip_ItemSources = {
     [575] = BZ["The Ruby Sanctum"] or "The Ruby Sanctum",
 	[600] = BZ["Ulduar"] or "Ulduar",
 	[601] = BZ["Tol'Garod"] or "Tol'Garod",	
+	[630] = BZ["Keldanas"] or "Keldanas",	
   },
   Bosses = {
     [2] = BB["Illidan Stormrage"] or "Illidan Stormrage",
@@ -159,12 +160,12 @@ InspectEquip_ItemSources = {
     [86] = BB["Buru the Gorger"] or "Buru the Gorger",
     [87] = BB["Moam"] or "Moam",
     [88] = BB["Kurinnaxx"] or "Kurinnaxx",
-    [90] = BB["The Lurker Below"] or "The Lurker Below",
-    [91] = BB["Morogrim Tidewalker"] or "Morogrim Tidewalker",
-    [92] = BB["Hydross the Unstable"] or "Hydross the Unstable",
-    [93] = BB["Lady Vashj"] or "Lady Vashj",
-    [94] = BB["Fathom-Lord Karathress"] or "Fathom-Lord Karathress",
-    [95] = BB["Leotheras the Blind"] or "Leotheras the Blind",
+    [90] = BB["The Lurker Below"] or "The Lurker Below", ----краб
+    [91] = BB["Morogrim Tidewalker"] or "Morogrim Tidewalker", ------vморогрим
+    [92] = BB["Hydross the Unstable"] or "Hydross the Unstable",------гидрос
+    [93] = BB["Lady Vashj"] or "Lady Vashj", ----вайш
+    [94] = BB["Fathom-Lord Karathress"] or "Fathom-Lord Karathress",-----каратрес
+    [95] = BB["Leotheras the Blind"] or "Leotheras the Blind", ----слепец
     [97] = BB["Kil'jaeden"] or "Kil'jaeden",
     [98] = BB["Entropius"] or "Entropius",
     [99] = BB["Lady Sacrolash"] or "Lady Sacrolash",
@@ -183,10 +184,10 @@ InspectEquip_ItemSources = {
     [113] = BB["Princess Huhuran"] or "Princess Huhuran",
     [114] = BB["Viscidus"] or "Viscidus",
     [115] = BB["Lord Kri"] or "Lord Kri",
-    [117] = BB["Al'ar"] or "Al'ar",
-    [118] = BB["Kael'thas Sunstrider"] or "Kael'thas Sunstrider",
-    [119] = BB["High Astromancer Solarian"] or "High Astromancer Solarian",
-    [120] = BB["Void Reaver"] or "Void Reaver",
+    [117] = BB["Al'ar"] or "Al'ar", ---алар
+    [118] = BB["Kael'thas Sunstrider"] or "Kael'thas Sunstrider", ---кельтас
+    [119] = BB["High Astromancer Solarian"] or "High Astromancer Solarian", ----соляра
+    [120] = BB["Void Reaver"] or "Void Reaver",----робот
     [122] = BB["Alexstrasza's Gift"] or "Alexstrasza's Gift",
     [124] = BB["Sartharion"] or "Sartharion",
     [126] = BB["Ignis the Furnace Master"] or "Ignis the Furnace Master",
@@ -604,7 +605,10 @@ InspectEquip_ItemSources = {
 	[617] = BB["Gorelac"] or "Gorelac",	
 	[618] = BB["Seventh Legion"] or "Seventh Legion",	
 	[619] = BB["Golden Scorpid"] or "Golden Scorpid",	
-	[620] = BB["Kor'kron_Battalion"] or "Kor'kron_Battalion",		
+	[620] = BB["Kor'kron_Battalion"] or "Kor'kron_Battalion",	
+------------------ostrov
+[630]= BB["Kor'kron_Battalion"] or "Kor'kron_Battalion",
+	
   },
   Items = {
     [872] = "d_364_d_372",
@@ -6237,20 +6241,20 @@ InspectEquip_ItemSources = {
     [34615] = "d_262_h_118",
     [34616] = "d_262_h_118",
     [34625] = "d_262_n_118",
-    [34665] = "f",
-    [34666] = "f",
-    [34667] = "f",
-    [34670] = "f",
-    [34671] = "f",
-    [34672] = "f",
-    [34673] = "f",
-    [34674] = "f",
-    [34675] = "f",
-    [34676] = "f",
-    [34677] = "f",
-    [34678] = "f",
-    [34679] = "f",
-    [34680] = "f",
+    [34665] = "kel",
+    [34666] = "kel",
+    [34667] = "kel",
+    [34670] = "kel",
+    [34671] = "kel",
+    [34672] = "kel",
+    [34673] = "kel",
+    [34674] = "kel",
+    [34675] = "kel",
+    [34676] = "kel",
+    [34677] = "kel",
+    [34678] = "kel",
+    [34679] = "kel",
+    [34680] = "kel",
     [34683] = "e",
     [34685] = "e",
     [34697] = "d_262_n_265",
@@ -14398,6 +14402,25 @@ InspectEquip_ItemSources = {
 	[151554] = "r_600_N_614_",
 	[151562] = "r_600_N_614_",
 	[151560] = "r_600_N_614_",
+	-- т5.1
+	--дк дд
+	[81241] = "r_89_h_93_T5;",
+	[80867] = "r_116_h_120_T5;",
+	[80861] = "r_116_h_118_T5;",
+	[80927] = "r_89_h_95_T5;",
+	[82812] = "r_89_h_94_T5;",
+	--дк танк
+	[87612] = "r_89_h_93_T5;",
+	[87494] = "r_116_h_120_T5;",
+	[90600] = "r_116_h_118_T5;",
+	[87601] = "r_89_h_95_T5;",
+	[87589] = "r_89_h_94_T5;",
+	
+	
+	
+	
+	
+	
 -- т5.2 
 	[103418] = "r_116_H_615_;r_89_H_615_",
 	[103420] = "r_116_H_615_;r_89_H_615_",
@@ -14864,5 +14887,48 @@ InspectEquip_ItemSources = {
 	[153674] = "tol",
 	[153671] = "tol",
 	[153673] = "tol",
+	
+	----------------------------keldanas
+	[25799] = "kel",
+	[22817] = "kel",
+	[29748] = "kel",
+	[19879] = "kel",
+	[1] = "kel",
+	[3] = "kel",
+	[6] = "kel",
+	[2] = "kel",
+	[5] = "kel",
+	[4] = "kel",
+	[23] = "kel",
+	[8] = "kel",
+	[7] = "kel",
+	[22] = "kel",
+	[24] = "kel",
+	[21] = "kel",
+	[35221] = "kel",
+	[55262] = "kel",
+	[30098] = "kel",
+	[50480] = "kel",
+	[12] = "kel",
+	[13] = "kel",
+	[11] = "kel",
+	[15] = "kel",
+	[16] = "kel",
+	[10] = "kel",
+	[9] = "kel",
+	[50481] = "kel",
+	[251] = "kel",
+	[300098] = "kel",
+	----------грань
+	[49888] = "r_544_Q_",
+	--вх 64
+	[435] = "r_544_Q_",
+	---шм
+	[49623] = "r_544_Q_",
+	
+	--вх 84
+	[436] = "r_544_Q_",
+	--валанир
+	[151821] = "r_600_Q_",
   },
 }

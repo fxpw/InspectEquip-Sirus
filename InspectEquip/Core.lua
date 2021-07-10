@@ -15,7 +15,8 @@ local slots = { "HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot",
                 "SecondaryHandSlot", "RangedSlot" } -- TabardSlot, ShirtSlot
 local noEnchantWarningSlots = {
   ["NeckSlot"] = true, ["WaistSlot"] = true, ["Finger0Slot"] = true, ["Finger1Slot"] = true,
-  ["Trinket0Slot"] = true, ["Trinket1Slot"] = true, ["RangedSlot"] = true,
+  ["Trinket0Slot"] = true, ["Trinket1Slot"] = true, ["RangedSlot"] = true,["SecondaryHandSlot"] = true,
+
 }
     local lefthand = {
   ["SecondaryHandSlot"] = true,
@@ -626,21 +627,46 @@ function IE:AddItems(tab, padding,event)
 	-- if InspectEquipConfig.seid  then  -------------------------------------------- айди инчантов включены ли
 	-- suffix = suffix..":  "..item.enchant .."  :"
 	-- end
-	if InspectEquipConfig.soketc  then                               
-	if (item.kolvo == 4 ) then                                     -------------------- сокеты включены ли
-	--------------------------------------------- пр гем
-	
+	if InspectEquipConfig.soketc  then                              -------------------- сокеты включены ли   
+	if (item.kolvo == 4 ) then                         ---------- если 4 гема          
+													---------- для 1 гема
 	if   (item.unsocet1 == 0) then
 	item.unsocet1 = "|cffff0000  нет |r"
-	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
+	------------------------------------------------------------------------------ все сокеты бк и +50
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	then
+	item.unsocet1 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
+	
+	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )   then 
 	item.unsocet1 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet1 > 4000) then
 		item.unsocet1 = " бк "	
 	end
+	
 	--------------------------------------------- вт гем
 	if   (item.unsocet2 == 0) then
 	item.unsocet2 = "|cffff0000  нет |r"
+	
+	elseif (item.unsocet2 == 3734)	or (item.unsocet2 == 9022)  	or (item.unsocet2 == 3745)   	or (item.unsocet2 == 3742)	or (item.unsocet2 == 3293)   	or (item.unsocet2 == 3732)  	or (item.unsocet2 == 3738)  
+
+	then
+	item.unsocet2 = " бк "              
+	
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	item.unsocet2 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
 	
@@ -651,6 +677,23 @@ function IE:AddItems(tab, padding,event)
 	------------------------------------------- тр гем
 	if   (item.unsocet3 == 0) then
 	item.unsocet3 = "|cffff0000  нет |r"
+	elseif (item.unsocet3 == 3734) -- 58 спд
+	or (item.unsocet3 == 9022)   --  42 спд
+	or (item.unsocet3 == 3745)   --   50 рпб
+	or (item.unsocet3 == 3742)   --   50 хит
+	or (item.unsocet3 == 3293)   --   75 вын
+	or (item.unsocet3 == 3732)  --    50 силы
+	or (item.unsocet3 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet3 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	item.unsocet3 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
 	item.unsocet3 = "|cffff0000  лк |r"
@@ -661,6 +704,23 @@ function IE:AddItems(tab, padding,event)
 	------------------------------------------- чт гем
 	if   (item.unsocet4 == 0) then
 	item.unsocet4 = "|cffff0000  нет |r"
+	elseif (item.unsocet4 == 3734) -- 58 спд
+	or (item.unsocet4 == 9022)   --  42 спд
+	or (item.unsocet4 == 3745)   --   50 рпб
+	or (item.unsocet4 == 3742)   --   50 хит
+	or (item.unsocet4 == 3293)   --   75 вын
+	or (item.unsocet4 == 3732)  --    50 силы
+	or (item.unsocet4 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet4 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet4 < 4000) and (item.unsocet4 > 0 )  then 
 	item.unsocet4 = "|cffff0000  лк |r"
@@ -674,6 +734,23 @@ function IE:AddItems(tab, padding,event)
 	
 	if   (item.unsocet1 == 0) then
 	item.unsocet1 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet1 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
 	
@@ -683,6 +760,23 @@ function IE:AddItems(tab, padding,event)
 	--------------------------------------------- вт гем
 	if   (item.unsocet2 == 0) then
 	item.unsocet2 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet2 == 9022)   --  42 спд
+	or (item.unsocet2 == 3745)   --   50 рпб
+	or (item.unsocet2 == 3742)   --   50 хит
+	or (item.unsocet2 == 3293)   --   75 вын
+	or (item.unsocet2 == 3732)  --    50 силы
+	or (item.unsocet2 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet2 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	item.unsocet2 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
 	
@@ -693,6 +787,23 @@ function IE:AddItems(tab, padding,event)
 	------------------------------------------- тр гем
 	if   (item.unsocet3 == 0) then
 	item.unsocet3 = "|cffff0000  нет |r"
+	elseif (item.unsocet3 == 3734) -- 58 спд
+	or (item.unsocet3 == 9022)   --  42 спд
+	or (item.unsocet3 == 3745)   --   50 рпб
+	or (item.unsocet3 == 3742)   --   50 хит
+	or (item.unsocet3 == 3293)   --   75 вын
+	or (item.unsocet3 == 3732)  --    50 силы
+	or (item.unsocet3 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet3 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
 	item.unsocet3 = "|cffff0000  лк |r"
@@ -706,6 +817,23 @@ function IE:AddItems(tab, padding,event)
 	
 	if   (item.unsocet1 == 0) then
 	item.unsocet1 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet1 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
 	
@@ -715,6 +843,23 @@ function IE:AddItems(tab, padding,event)
 	--------------------------------------------- вт гем
 	if   (item.unsocet2 == 0) then
 	item.unsocet2 = "|cffff0000  нет |r"
+	elseif (item.unsocet2 == 3734) -- 58 спд
+	or (item.unsocet2 == 9022)   --  42 спд
+	or (item.unsocet2 == 3745)   --   50 рпб
+	or (item.unsocet2 == 3742)   --   50 хит
+	or (item.unsocet2 == 3293)   --   75 вын
+	or (item.unsocet2 == 3732)  --    50 силы
+	or (item.unsocet2 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet2 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
 	
@@ -726,6 +871,23 @@ function IE:AddItems(tab, padding,event)
 	
 	if   (item.unsocet1 == 0) then
 	item.unsocet1 = "|cffff0000  нет |r"
+	elseif (item.unsocet1 == 3734) -- 58 спд
+	or (item.unsocet1 == 9022)   --  42 спд
+	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3293)   --   75 вын
+	or (item.unsocet1 == 3732)  --    50 силы
+	or (item.unsocet1 == 3738)  --    крита силы
+	
+	
+	
+	then
+	item.unsocet1 = " бк "
+	
+	--------------------------------------        исключения                 
+	
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
 	
@@ -834,7 +996,7 @@ function IE:AddItems(tab, padding,event)
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3606) and (not noEnchantWarningSlots[item.slot])then -- инжа боты
 	 suffix = " - Есть чарка"..suffix
 	 
-	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3789) and (not noEnchantWarningSlots[item.slot])then -- берса пушка
+	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3789) then  -- берса пушка
 	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
@@ -942,7 +1104,10 @@ function IE:AddItems(tab, padding,event)
 	 suffix = " - Есть чарка"..suffix
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 9011) then -- спд мп5
 	 suffix = " - Есть чарка"..suffix
-	 
+	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3859) then -- плащ инжа
+	 suffix = " - Есть чарка"..suffix
+	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3370) then -- ледяного жара
+	 suffix = " - Есть чарка"..suffix
 	   -- elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7027) and (not noEnchantWarningSlots[item.slot])then -- щит 37 инты
 	  -- suffix = " - Есть чарка"..suffix
 	  
@@ -974,7 +1139,8 @@ function IE:AddItems(tab, padding,event)
 	 
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3878) and (not noEnchantWarningSlots[item.slot])then -- голова удар пвп инжа
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
-	 
+	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3245) and (not noEnchantWarningSlots[item.slot])then -- грудь рес
+	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3601) and ( pozs[item.slot])then -- пояс пвп 
 	 suffix = " - Есть чарка"..suffix.."|cffff0000   пвп|r"
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3797) then -- голова спд пвп
@@ -987,6 +1153,8 @@ function IE:AddItems(tab, padding,event)
 	 
 	 ------------------------------------------------------------------------------------------------------------------------ толгород
 	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 10124) then -- дар искателя
+	 suffix = " - Есть чарка"..suffix
+	 elseif InspectEquipConfig.checkEnchants  and (item.enchant == 10119) then -- дар травника
 	 suffix = " - Есть чарка"..suffix
 	----------------------------------------------------------------------------------------------------------------------------
 	  
@@ -1106,6 +1274,11 @@ function IE:FindItem(itemLink, includeUnknown)
         tinsert(sources, {L["Vendor"]})
 	  elseif cat == "l" then -- Lily
         tinsert(sources, {L["Lily"]})
+		elseif cat == "tol" then -- Tol'Garod
+        tinsert(sources, {L["Tol'Garod"]})
+		elseif cat == "kel" then -- Keldanas
+        tinsert(sources, {L["Keldanas"]})
+		
 	  elseif cat == "b" then -- Heroic TBC Instances
         tinsert(sources, {L["Heroic TBC Instances"]})
       elseif cat == "p" then -- PvP: p_PVPTYPE
