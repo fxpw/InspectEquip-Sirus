@@ -636,6 +636,7 @@ function IE:AddItems(tab, padding,event)
 	elseif (item.unsocet1 == 3734) -- 58 спд
 	or (item.unsocet1 == 9022)   --  42 спд
 	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet1 == 3742)   --   50 хит
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
@@ -660,7 +661,7 @@ function IE:AddItems(tab, padding,event)
 	if   (item.unsocet2 == 0) then
 	item.unsocet2 = "|cffff0000  нет |r"
 	
-	elseif (item.unsocet2 == 3734)	or (item.unsocet2 == 9022)  	or (item.unsocet2 == 3745)   	or (item.unsocet2 == 3742)	or (item.unsocet2 == 3293)   	or (item.unsocet2 == 3732)  	or (item.unsocet2 == 3738)  
+	elseif (item.unsocet2 == 3734)	or (item.unsocet2 == 9022)  or (item.unsocet1 == 3739)  or (item.unsocet2 == 3745)   	or (item.unsocet2 == 3742)	or (item.unsocet2 == 3293)   	or (item.unsocet2 == 3732)  	or (item.unsocet2 == 3738)  
 
 	then
 	item.unsocet2 = " бк "              
@@ -680,6 +681,7 @@ function IE:AddItems(tab, padding,event)
 	elseif (item.unsocet3 == 3734) -- 58 спд
 	or (item.unsocet3 == 9022)   --  42 спд
 	or (item.unsocet3 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet3 == 3742)   --   50 хит
 	or (item.unsocet3 == 3293)   --   75 вын
 	or (item.unsocet3 == 3732)  --    50 силы
@@ -708,6 +710,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet4 == 9022)   --  42 спд
 	or (item.unsocet4 == 3745)   --   50 рпб
 	or (item.unsocet4 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet4 == 3293)   --   75 вын
 	or (item.unsocet4 == 3732)  --    50 силы
 	or (item.unsocet4 == 3738)  --    крита силы
@@ -719,8 +722,8 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
-	item.unsocet1 = "|cffff0000  лк |r"
+	elseif  (item.unsocet4 == 6070) or  (item.unsocet4 == 6090)  or  (item.unsocet4 == 6057) then
+	item.unsocet4 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet4 < 4000) and (item.unsocet4 > 0 )  then 
 	item.unsocet4 = "|cffff0000  лк |r"
@@ -738,6 +741,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 9022)   --  42 спд
 	or (item.unsocet1 == 3745)   --   50 рпб
 	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
@@ -760,10 +764,11 @@ function IE:AddItems(tab, padding,event)
 	--------------------------------------------- вт гем
 	if   (item.unsocet2 == 0) then
 	item.unsocet2 = "|cffff0000  нет |r"
-	elseif (item.unsocet1 == 3734) -- 58 спд
+	elseif (item.unsocet2 == 3734) -- 58 спд
 	or (item.unsocet2 == 9022)   --  42 спд
 	or (item.unsocet2 == 3745)   --   50 рпб
 	or (item.unsocet2 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
@@ -791,6 +796,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet3 == 9022)   --  42 спд
 	or (item.unsocet3 == 3745)   --   50 рпб
 	or (item.unsocet3 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet3 == 3293)   --   75 вын
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
@@ -821,6 +827,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 9022)   --  42 спд
 	or (item.unsocet1 == 3745)   --   50 рпб
 	or (item.unsocet1 == 3742)   --   50 хит
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
@@ -846,6 +853,7 @@ function IE:AddItems(tab, padding,event)
 	elseif (item.unsocet2 == 3734) -- 58 спд
 	or (item.unsocet2 == 9022)   --  42 спд
 	or (item.unsocet2 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet2 == 3742)   --   50 хит
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
@@ -874,6 +882,7 @@ function IE:AddItems(tab, padding,event)
 	elseif (item.unsocet1 == 3734) -- 58 спд
 	or (item.unsocet1 == 9022)   --  42 спд
 	or (item.unsocet1 == 3745)   --   50 рпб
+	or (item.unsocet1 == 3739)   --   50 хасты
 	or (item.unsocet1 == 3742)   --   50 хит
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
@@ -1088,6 +1097,10 @@ function IE:AddItems(tab, padding,event)
 	  elseif InspectEquipConfig.checkEnchants  and (item.enchant == 3813) and (not noEnchantWarningSlots[item.slot])then -- голова природа
 	  suffix = " - Есть чарка"..suffix
 	   elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7023) then -- щит 30 рейта блока
+	  suffix = " - Есть чарка"..suffix
+	   elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7041) then -- пушка метк криит
+	  suffix = " - Есть чарка"..suffix
+	   elseif InspectEquipConfig.checkEnchants  and (item.enchant == 7024) then -- щит вын
 	  suffix = " - Есть чарка"..suffix
 	  
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 7027) and ( lefthand[item.slot]) then    --- на левую руку щит 37 инты
