@@ -1534,7 +1534,7 @@ function IE:AddItems(tab, padding,event)
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1)  then ---- не бк чарка
       suffix = "|cffff0000- Не бк чарка|r"..suffix
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0)  then ---- не показывать где не должно х2
-      suffix = "|cffff0000-|r"..suffix
+      suffix = suffix
 	  
 	  -- elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1) and ( lefthand[item.slot]) then    --- на левую руку проверка наложения
       -- suffix = "|cffff0000- Нет Чарки|r  "..suffix
@@ -1797,7 +1797,7 @@ function IE:AddItems(tab, padding,event)
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1)  then ---- не бк чарка
       suffix = "|cffff0000- Не бк чарка|r"..suffix
 	   elseif InspectEquipConfig.checkEnchants and (item.enchant == 0)  then ---- не показывать где не должно х2
-      suffix = "|cffff0000-|r"..suffix
+      suffix = suffix
 	  
 	  -- elseif InspectEquipConfig.checkEnchants and (item.enchant >= 1) and ( lefthand[item.slot]) then    --- на левую руку проверка наложения
       -- suffix = "|cffff0000- Нет Чарки|r  "..suffix
