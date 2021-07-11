@@ -15,7 +15,7 @@ local slots = { "HeadSlot", "NeckSlot", "ShoulderSlot", "BackSlot", "ChestSlot",
                 "SecondaryHandSlot", "RangedSlot" } -- TabardSlot, ShirtSlot
 local noEnchantWarningSlots = {
   ["NeckSlot"] = true, ["WaistSlot"] = true, ["Finger0Slot"] = true, ["Finger1Slot"] = true,
-  ["Trinket0Slot"] = true, ["Trinket1Slot"] = true, ["RangedSlot"] = true,["SecondaryHandSlot"] = true,
+  ["Trinket0Slot"] = true, ["Trinket1Slot"] = true, ["SecondaryHandSlot"] = true,
 
 }
     local lefthand = {
@@ -637,7 +637,7 @@ end
 
 ]]--
 
-function IE:AddItems(tab, padding,event)
+function IE:AddItems(tab, padding,event,unit)
   for i = 1, tab.count do
     local item = tab[i]
 	local suffix = ""
@@ -1279,8 +1279,9 @@ function IE:AddItems(tab, padding,event)
 	 	 
 	 ------ чарка 
 	 if  InspectEquipConfig.checkEnchants and  InspectEquipConfig.checkEnchantspokaz then                   --- если стоит показывать 
-	 if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
+	 if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = " - Есть чарка"..suffix
+	 
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
 	 suffix = " - Есть чарка"..suffix
@@ -1543,7 +1544,7 @@ function IE:AddItems(tab, padding,event)
 		   end
 	 
 	  elseif   InspectEquipConfig.checkEnchants and not  InspectEquipConfig.checkEnchantspokaz then --------- если стоит не показывать
-	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot])then -- голова  мдд
+	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = suffix
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
