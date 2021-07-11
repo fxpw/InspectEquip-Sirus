@@ -413,7 +413,7 @@ function IE:InspectFrame_UnitChanged()
    WIN:Hide()  
   
 	
-	
+	 CharacterFrame:Hide()
 	 
   else
     WIN:Hide()
@@ -1308,7 +1308,8 @@ function IE:AddItems(tab, padding,event,unit)
 	 if  InspectEquipConfig.checkEnchants and  InspectEquipConfig.checkEnchantspokaz then                   --- если стоит показывать 
 	 if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = " - Есть чарка"..suffix
-	 
+	 elseif   (item.enchant == 4176) and then -- хант крит
+	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
 	 suffix = " - Есть чарка"..suffix
@@ -1386,6 +1387,9 @@ function IE:AddItems(tab, padding,event,unit)
 	 elseif   (item.enchant == 3849) then  -- титановая обшивка
 	 suffix = " - Есть чарка"..suffix
 	 elseif   (item.enchant == 7007) then  -- титановая обшивка
+	 suffix = " - Есть чарка"..suffix
+	 
+	 elseif   (item.enchant == 3819) then  -- хил голова
 	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif   (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
@@ -1573,6 +1577,8 @@ function IE:AddItems(tab, padding,event,unit)
 	  elseif   InspectEquipConfig.checkEnchants and not  InspectEquipConfig.checkEnchantspokaz then --------- если стоит не показывать
 	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = suffix
+	 elseif   (item.enchant == 4176) and then -- хант крит
+	 suffix = suffix
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
 	 suffix = suffix
@@ -1650,6 +1656,9 @@ function IE:AddItems(tab, padding,event,unit)
 	 elseif   (item.enchant == 3849) then  -- титановая обшивка
 	 suffix = suffix
 	 elseif   (item.enchant == 7007) then  -- титановая обшивка
+	 suffix = suffix
+	 
+	  elseif   (item.enchant == 3819) then  -- хил голова
 	 suffix = suffix
 	 
 	 elseif   (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
