@@ -659,13 +659,14 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	then
 	item.unsocet1 = " бк "
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )   then 
@@ -687,11 +688,11 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
-	
+	or (item.unsocet2 == 3297)  --    ап 100
 	then
 	item.unsocet2 = " бк "              
 	
-	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	elseif  (item.unsocet2 == 6070) or (item.unsocet2 == 6054) or (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
 	item.unsocet2 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
@@ -711,7 +712,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet3 == 3293)   --   75 вын
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
-	
+	or (item.unsocet3 == 3297)  --    ап 100
 	
 	
 	then
@@ -719,7 +720,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	elseif  (item.unsocet3 == 6070) or (item.unsocet3 == 6054) or (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
 	item.unsocet3 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
@@ -739,7 +740,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet4 == 3293)   --   75 вын
 	or (item.unsocet4 == 3732)  --    50 силы
 	or (item.unsocet4 == 3738)  --    крита силы
-	
+	or (item.unsocet4 == 3297)  --    ап 100
 	
 	
 	then
@@ -747,7 +748,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet4 == 6070) or  (item.unsocet4 == 6090)  or  (item.unsocet4 == 6057) then
+	elseif  (item.unsocet4 == 6070) or (item.unsocet4 == 6054) or (item.unsocet4 == 6090)  or  (item.unsocet4 == 6057) then
 	item.unsocet4 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet4 < 4000) and (item.unsocet4 > 0 )  then 
@@ -772,7 +773,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	
 	then
@@ -780,7 +781,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
@@ -799,7 +800,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
-	
+	or (item.unsocet2 == 3297)  --    ап 100
 	
 	
 	then
@@ -807,7 +808,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6054) or(item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
 	item.unsocet2 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
@@ -827,7 +828,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet3 == 3293)   --   75 вын
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
-	
+	or (item.unsocet3 == 3297)  --    ап 100
 	
 	
 	then
@@ -835,7 +836,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6054) or (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
 	item.unsocet3 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
@@ -858,7 +859,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	
 	then
@@ -866,7 +867,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
@@ -885,7 +886,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
-	
+	or (item.unsocet2 == 3297)  --    ап 100
 	
 	
 	then
@@ -893,7 +894,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	elseif  (item.unsocet2 == 6070) or (item.unsocet2 == 6054) or (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
@@ -914,7 +915,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	
 	then
@@ -922,7 +923,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
@@ -973,13 +974,13 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	then
 	item.unsocet1 = "  "
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )   then 
@@ -1001,11 +1002,11 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
-	
+	or (item.unsocet2 == 3297)  --    ап 100
 	then
 	item.unsocet2 = "  "              
 	
-	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	elseif  (item.unsocet2 == 6070) or (item.unsocet2 == 6054) or (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
 	item.unsocet2 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
@@ -1025,7 +1026,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet3 == 3293)   --   75 вын
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
-	
+	or (item.unsocet3 == 3297)  --    ап 100
 	
 	
 	then
@@ -1033,7 +1034,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	elseif  (item.unsocet3 == 6070) or (item.unsocet3 == 6054) or (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
 	item.unsocet3 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
@@ -1053,7 +1054,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet4 == 3293)   --   75 вын
 	or (item.unsocet4 == 3732)  --    50 силы
 	or (item.unsocet4 == 3738)  --    крита силы
-	
+	or (item.unsocet4 == 3297)  --    ап 100
 	
 	
 	then
@@ -1061,7 +1062,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet4 == 6070) or  (item.unsocet4 == 6090)  or  (item.unsocet4 == 6057) then
+	elseif  (item.unsocet4 == 6070) or (item.unsocet4 == 6054) or (item.unsocet4 == 6090)  or  (item.unsocet4 == 6057) then
 	item.unsocet4 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet4 < 4000) and (item.unsocet4 > 0 )  then 
@@ -1085,7 +1086,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	
 	then
@@ -1093,7 +1094,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
@@ -1112,7 +1113,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
-	
+	or (item.unsocet2 == 3297)  --    ап 100
 	
 	
 	then
@@ -1120,7 +1121,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	elseif  (item.unsocet2 == 6070) or (item.unsocet2 == 6054) or (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
 	item.unsocet2 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
@@ -1140,7 +1141,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet3 == 3293)   --   75 вын
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
-	
+	or (item.unsocet3 == 3297)  --    ап 100
 	
 	
 	then
@@ -1148,7 +1149,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet3 == 6070) or  (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
+	elseif  (item.unsocet3 == 6070) or (item.unsocet3 == 6054) or (item.unsocet3 == 6090)  or  (item.unsocet3 == 6057) then
 	item.unsocet3 = "|cffff0000  лк |r"
 	
 	elseif (item.unsocet3 < 4000) and (item.unsocet3 > 0 )  then 
@@ -1171,7 +1172,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	
 	then
@@ -1179,7 +1180,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
@@ -1198,7 +1199,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet2 == 3293)   --   75 вын
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
-	
+	or (item.unsocet2 == 3297)  --    ап 100
 	
 	
 	then
@@ -1206,7 +1207,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet2 == 6070) or  (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
+	elseif  (item.unsocet2 == 6070) or (item.unsocet2 == 6054) or (item.unsocet2 == 6090)  or  (item.unsocet2 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet2 < 4000) and (item.unsocet2 > 0 )  then 
 	item.unsocet2 = "|cffff0000  лк |r"
@@ -1228,7 +1229,7 @@ function IE:AddItems(tab, padding,event)
 	or (item.unsocet1 == 3293)   --   75 вын
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
-	
+	or (item.unsocet1 == 3297)  --    ап 100
 	
 	
 	then
@@ -1236,7 +1237,7 @@ function IE:AddItems(tab, padding,event)
 	
 	--------------------------------------        исключения                 
 	
-	elseif  (item.unsocet1 == 6070) or  (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
+	elseif  (item.unsocet1 == 6070) or (item.unsocet1 == 6054) or (item.unsocet1 == 6090)  or  (item.unsocet1 == 6057) then
 	item.unsocet1 = "|cffff0000  лк |r"
 	elseif (item.unsocet1 < 4000) and (item.unsocet1 > 0 )  then 
 	item.unsocet1 = "|cffff0000  лк |r"
