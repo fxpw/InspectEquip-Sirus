@@ -2,6 +2,7 @@
 
 InspectEquip = LibStub("AceAddon-3.0"):NewAddon("InspectEquip", "AceConsole-3.0", "AceHook-3.0", "AceTimer-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale("InspectEquip")
+local IF = PaperDollFrame
 local IE = InspectEquip
 local IS = InspectEquip_ItemSources --> ItemSources.lua
 local WIN = InspectEquip_InfoWindow --> InfoWindow.xml
@@ -268,6 +269,7 @@ end
 function IE:OnEnable()
   origInspectUnit = origInspectUnit or InspectUnit
   InspectUnit = function(...) IE:InspectUnit(...) end
+  
   self:SecureHookScript(PaperDollFrame, "OnShow", "PaperDollFrame_OnShow")
   self:SecureHookScript(PaperDollFrame, "OnHide", "PaperDollFrame_OnHide")
   self:SecureHookScript(GearManagerDialog, "OnShow", "GearManagerDialog_OnShow")
@@ -277,6 +279,8 @@ function IE:OnEnable()
     self:SecureHookScript(OutfitterFrame, "OnHide", "GearManagerDialog_OnHide")
   end
   self:RegisterEvent("UNIT_INVENTORY_CHANGED")
+   
+  
 end
 
 function IE:OnDisable()
@@ -284,9 +288,12 @@ function IE:OnDisable()
   if hooked then
     hooked = false
     self:Unhook("InspectFrame_UnitChanged")
+	 self:Unhook("InspectFrame_UnitChanged")
   end
   self:UnhookAll()
   self:UnregisterEvent("UNIT_INVENTORY_CHANGED")
+  
+  
   self:CancelAllTimers()
   WIN:Hide()
 end
@@ -393,10 +400,21 @@ function IE:InspectUnit(unit, ...)
     self:Inspect(unit)
   end
 end
+-- local clock = os.clock
+-- function sleep(n)  -- seconds
+  -- local t0 = clock()
+  -- while clock() - t0 <= n do end
+-- end
 
 function IE:InspectFrame_UnitChanged()
   if InspectFrame.unit and InspectEquipConfig.inspectWindow then
-    self:InspectUnit(InspectFrame.unit)
+  
+  
+   WIN:Hide()  
+  
+	
+	
+	 
   else
     WIN:Hide()
   end
@@ -405,7 +423,12 @@ end
 function IE:PaperDollFrame_OnShow()
   if InspectEquipConfig.charWindow then
     IE:SetParent(CharacterFrame)
+	-- local event = require("event")
+	-- local t = event.timer(1,IE:Inspect("player"),2)
+	-- os.sleep(t)
     IE:Inspect("player")
+	
+	 
   end
 end
 
@@ -433,6 +456,8 @@ end
 function IE:UNIT_INVENTORY_CHANGED(event, unit)
   if (unit == "player") and (WIN:IsVisible() or autoHidden) and (WIN:GetParent() == CharacterFrame) then
     IE:Inspect("player")
+	InspectUnit("target")
+	IE:Inspect("player")
   end
 end
 
@@ -462,8 +487,10 @@ function IE:Inspect(unit, entry)
         cacheItems = entry.Items
       end
     else
-      --ClearInspectPlayer()
-      --NotifyInspect(unit)
+	 -- ClearInspectPlayer()
+	 -- InspectUnit("target")
+      
+      -- NotifyInspect(unit)
     end
   end
   if unitRealm == "" then unitRealm = nil end
@@ -1963,8 +1990,13 @@ function IE.Line_OnEnter(row)
     GameTooltip:SetOwner(row, "ANCHOR_TOPLEFT")
     if (not cached) and (UnitName(curUnit) == curUnitName) then
       row.link = GetInventoryItemLink(curUnit, GetInventorySlotInfo(row.item.slot)) or row.link
+	 
     end
+	
+
+	
     GameTooltip:SetHyperlink(row.link)
+	
     if row.item and InspectEquipConfig.checkEnchants and (row.item.enchant == 0) and (not noEnchantWarningSlots[row.item.slot]) then
       GameTooltip:AddLine(" ")
       GameTooltip:AddLine("|cffff0000" .. L["Item is not enchanted"] .. "|r")
@@ -1975,6 +2007,7 @@ function IE.Line_OnEnter(row)
 			-- GameTooltip:AddLine("|cffff0000" .. L["Item is not socketed"] .. "|r")
 		-- end
     GameTooltip:Show()
+
   end
 end
 
