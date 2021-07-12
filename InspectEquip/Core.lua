@@ -439,7 +439,7 @@ function IE:InspectFrame_UnitChanged()
    local playerName = UnitName("target")
    table.insert(Arcanesignslack, playerName)
    table.insert(Arcanesignslack, playerName)
-   print(playerName)
+   print(playerName .. " 1")
    WIN:Hide()  
    CharacterFrame:Hide() 
   else
