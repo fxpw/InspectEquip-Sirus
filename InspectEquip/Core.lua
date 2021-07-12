@@ -411,7 +411,7 @@ function IE:InspectUnit(unit, ...)
     end
     for v,k in pairs(Arcanesignslack2) do 
     max = math.max(max, k)
-		print(v,k)
+		--print(v,k)
 		if max == 2 then
 		Arcanesignslack = {}
 		Arcanesignslack2 = {}
@@ -439,7 +439,7 @@ function IE:InspectFrame_UnitChanged()
    local playerName = UnitName("target")
    table.insert(Arcanesignslack, playerName)
    table.insert(Arcanesignslack, playerName)
-   print(playerName .. " 1")
+   --print(playerName .. " 1")
    WIN:Hide()  
    CharacterFrame:Hide() 
   else
