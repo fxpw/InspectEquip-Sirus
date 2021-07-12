@@ -72,12 +72,12 @@ local defaults = {
   showUnknown = true,
   inspectWindow = true,
   charWindow = true,
-  checkEnchants = true,
+  checkEnchants = false,
   listItemLevels = true,
   showAvgItemLevel = true,
-   socetc = true,
-   soketcpokaz = true,
-   checkenchantspokaz = true,
+   socetc = false,
+   soketcpokaz = false,
+   checkenchantspokaz = false,
    
    
    
