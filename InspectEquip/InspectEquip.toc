@@ -2,8 +2,8 @@
 ## Title: InspectEquip |r|cFF0038FF[Special for Sirus.su]|r
 ## Notes: Shows where the equipment of inspected users or yourself is from.
 ## Notes-ruRU: Показывает откуда, одетый на вас, или другого игрока, эквип.
-## Author: emelio (ported by MrS4g0)
-## Version: 1.7.7c
+## Author: Адаптация под Sirus - Пьяная, Фалафель
+## Version: 2.1
 ## OptionalDeps: Ace3, LibBabble-Zone-3.0, LibBabble-Boss-3.0, Examiner, Outfitter, Links, LinkWrangler
 ## SavedVariables: InspectEquipConfig
 ## X-WoWI-ID: 9509
