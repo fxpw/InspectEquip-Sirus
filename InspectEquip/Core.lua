@@ -268,8 +268,7 @@ end
 
 function IE:OnEnable()
   origInspectUnit = origInspectUnit or InspectUnit
-  InspectUnit = function(...) IE:InspectUnit(...) end
-  
+  InspectUnit = function(...) IE:InspectUnit(...) end 
   self:SecureHookScript(PaperDollFrame, "OnShow", "PaperDollFrame_OnShow")
   self:SecureHookScript(PaperDollFrame, "OnHide", "PaperDollFrame_OnHide")
   self:SecureHookScript(GearManagerDialog, "OnShow", "GearManagerDialog_OnShow")
@@ -386,6 +385,11 @@ function IE:GetExaminerCache(unit)
   return Examiner_Cache and Examiner_Cache[self:FullUnitName(name, realm)]
 end
 
+local k = 0
+local Arcanesignslack = {}
+local Arcanesignslack2 = {}
+local max = -math.huge
+
 function IE:InspectUnit(unit, ...)
   origInspectUnit(unit, ...)
 
@@ -395,9 +399,33 @@ function IE:InspectUnit(unit, ...)
     if not hooked and InspectFrame_UnitChanged then
       hooked = true
       self:SecureHook("InspectFrame_UnitChanged")
+    end 
+	-- k = k + 1
+    -- if k > 1 then
+    -- self:Inspect(unit)
+	-- k = 0
+	local playerName = UnitName("target")
+	table.insert(Arcanesignslack, playerName)
+    for i,v in ipairs(Arcanesignslack) do
+    Arcanesignslack2[v] = (Arcanesignslack2[v] or 0 ) +1
     end
-
-    self:Inspect(unit)
+    for v,k in pairs(Arcanesignslack2) do 
+    max = math.max(max, k)
+		print(v,k)
+		if max == 2 then
+		Arcanesignslack = {}
+		Arcanesignslack2 = {}
+		max = 0
+		table.insert(Arcanesignslack, playerName)
+		--table.insert(Arcanesignslack, playerName)
+		end
+        if max >= 2 then
+        self:Inspect(unit) 
+		Arcanesignslack = {}
+		Arcanesignslack2 = {}
+		max = 0
+        end
+	end
   end
 end
 -- local clock = os.clock
@@ -408,27 +436,22 @@ end
 
 function IE:InspectFrame_UnitChanged()
   if InspectFrame.unit and InspectEquipConfig.inspectWindow then
-  
-  
+   local playerName = UnitName("target")
+   table.insert(Arcanesignslack, playerName)
+   table.insert(Arcanesignslack, playerName)
+   print(playerName)
    WIN:Hide()  
-  
-	
-	 CharacterFrame:Hide()
-	 
+   CharacterFrame:Hide() 
   else
     WIN:Hide()
   end
 end
 
+
 function IE:PaperDollFrame_OnShow()
-  if InspectEquipConfig.charWindow then
-    IE:SetParent(CharacterFrame)
-	-- local event = require("event")
-	-- local t = event.timer(1,IE:Inspect("player"),2)
-	-- os.sleep(t)
-    IE:Inspect("player")
-	
-	 
+  if InspectEquipConfig.charWindow then  
+    IE:SetParent(CharacterFrame)	
+	IE:Inspect("player")
   end
 end
 
@@ -1308,7 +1331,7 @@ function IE:AddItems(tab, padding,event,unit)
 	 if  InspectEquipConfig.checkEnchants and  InspectEquipConfig.checkEnchantspokaz then                   --- если стоит показывать 
 	 if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = " - Есть чарка"..suffix
-	 elseif   (item.enchant == 4176) and then -- хант крит
+	 elseif   (item.enchant == 4176) then -- хант крит
 	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
@@ -1577,7 +1600,7 @@ function IE:AddItems(tab, padding,event,unit)
 	  elseif   InspectEquipConfig.checkEnchants and not  InspectEquipConfig.checkEnchantspokaz then --------- если стоит не показывать
 	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = suffix
-	 elseif   (item.enchant == 4176) and then -- хант крит
+	 elseif   (item.enchant == 4176) then -- хант крит
 	 suffix = suffix
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
