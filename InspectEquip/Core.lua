@@ -417,7 +417,7 @@ function IE:InspectUnit(unit, ...)
 		Arcanesignslack2 = {}
 		max = 0
 		table.insert(Arcanesignslack, playerName)
-		--table.insert(Arcanesignslack, playerName)
+		table.insert(Arcanesignslack, playerName)
 		end
         if max >= 2 then
         self:Inspect(unit) 
