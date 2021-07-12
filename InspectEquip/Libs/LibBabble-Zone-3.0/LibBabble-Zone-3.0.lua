@@ -1803,7 +1803,8 @@ elseif GAME_LOCALE == "ruRU" then
 	["Zul'Drak"] = "Зул'Драк",
 	["Zul'Farrak"] = "Зул'Фаррак",
 	["Zul'Gurub"] = "Зул'Гуруб",
-	["Tol'Garod"] = "Тол'Гарод"
+	["Tol'Garod"] = "Тол'Гарод",
+	["Auction"] = "Аукцион",
 }
 elseif GAME_LOCALE == "zhCN" then
 	lib:SetCurrentTranslations {

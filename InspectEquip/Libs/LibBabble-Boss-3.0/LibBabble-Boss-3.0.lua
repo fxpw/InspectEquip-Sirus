@@ -4976,6 +4976,8 @@ elseif GAME_LOCALE == "ruRU" then
 	["Zuramat the Obliterator"] = "Зурамат Уничтожитель",
     ["Gorelac"] = "Горе`лац",
     ["Lady Jaina Proudmoore"] = "Леди Джайна Праудмур",
+	["Elfyra"] = "Эльфира",
+	["Tribute Chest"] = "Сундук с наградами",
 }
 elseif GAME_LOCALE == "zhCN" then
 	lib:SetCurrentTranslations {

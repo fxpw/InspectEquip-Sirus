@@ -1970,11 +1970,12 @@ function IE:FindItem(itemLink, includeUnknown)
         tinsert(sources, {L["Vendor"]})
 	  elseif cat == "l" then -- Lily
         tinsert(sources, {L["Lily"]})
-		elseif cat == "tol" then -- Tol'Garod
+	  elseif cat == "tol" then -- Tol'Garod
         tinsert(sources, {L["Tol'Garod"]})
-		elseif cat == "kel" then -- Keldanas
+	  elseif cat == "kel" then -- Keldanas
         tinsert(sources, {L["Keldanas"]})
-		
+       elseif cat == "auс" then -- Keldanas
+        tinsert(sources, {L["Auction"]})
 	  elseif cat == "b" then -- Heroic TBC Instances
         tinsert(sources, {L["Heroic TBC Instances"]})
       elseif cat == "p" then -- PvP: p_PVPTYPE
