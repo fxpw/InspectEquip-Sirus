@@ -448,6 +448,7 @@ function IE:UNIT_INVENTORY_CHANGED(event, unit)
 end
 
 function IE:Inspect(unit, entry)
+  self.UpdateInspectTimer = C_Timer:NewTicker(0.001, function()
   local unitName, unitRealm
   cached = (unit == "cache")
 
@@ -598,6 +599,7 @@ function IE:Inspect(unit, entry)
   else
     WIN:Hide()
   end
+  end,5)
 end
 
 function IE:AddCats(tab, prefix)
