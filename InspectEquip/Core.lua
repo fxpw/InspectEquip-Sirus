@@ -675,6 +675,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	then
 	item.unsocet1 = " бк "
@@ -704,6 +705,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
 	or (item.unsocet2 == 3297)  --    ап 100
+	or (item.unsocet2 == 3733)  --    50 лвк
 	then
 	item.unsocet2 = " бк "              
 	
@@ -728,6 +730,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
 	or (item.unsocet3 == 3297)  --    ап 100
+	or (item.unsocet3 == 3733)  --    50 лвк
 	
 	
 	then
@@ -756,7 +759,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet4 == 3732)  --    50 силы
 	or (item.unsocet4 == 3738)  --    крита силы
 	or (item.unsocet4 == 3297)  --    ап 100
-	
+	or (item.unsocet4 == 3733)  --    50 лвк
 	
 	then
 	item.unsocet4 = " бк "
@@ -789,6 +792,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	
 	then
@@ -816,7 +820,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
 	or (item.unsocet2 == 3297)  --    ап 100
-	
+	or (item.unsocet2 == 3733)  --    50 лвк
 	
 	then
 	item.unsocet2 = " бк "
@@ -844,6 +848,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
 	or (item.unsocet3 == 3297)  --    ап 100
+	or (item.unsocet3 == 3733)  --    50 лвк
 	
 	
 	then
@@ -875,6 +880,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	
 	then
@@ -902,6 +908,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
 	or (item.unsocet2 == 3297)  --    ап 100
+	or (item.unsocet2 == 3733)  --    50 лвк
 	
 	
 	then
@@ -931,6 +938,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	
 	then
@@ -990,6 +998,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	then
 	item.unsocet1 = "  "
 	
@@ -1018,6 +1027,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
 	or (item.unsocet2 == 3297)  --    ап 100
+	or (item.unsocet2 == 3733)  --    50 лвк
 	then
 	item.unsocet2 = "  "              
 	
@@ -1042,6 +1052,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
 	or (item.unsocet3 == 3297)  --    ап 100
+	or (item.unsocet3 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1070,6 +1081,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet4 == 3732)  --    50 силы
 	or (item.unsocet4 == 3738)  --    крита силы
 	or (item.unsocet4 == 3297)  --    ап 100
+	or (item.unsocet4 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1102,6 +1114,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1129,6 +1142,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
 	or (item.unsocet2 == 3297)  --    ап 100
+	or (item.unsocet2 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1157,6 +1171,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet3 == 3732)  --    50 силы
 	or (item.unsocet3 == 3738)  --    крита силы
 	or (item.unsocet3 == 3297)  --    ап 100
+	or (item.unsocet3 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1188,6 +1203,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1215,6 +1231,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet2 == 3732)  --    50 силы
 	or (item.unsocet2 == 3738)  --    крита силы
 	or (item.unsocet2 == 3297)  --    ап 100
+	or (item.unsocet2 == 3733)  --    50 лвк
 	
 	
 	then
@@ -1245,6 +1262,7 @@ function IE:AddItems(tab, padding,event,unit)
 	or (item.unsocet1 == 3732)  --    50 силы
 	or (item.unsocet1 == 3738)  --    крита силы
 	or (item.unsocet1 == 3297)  --    ап 100
+	or (item.unsocet1 == 3733)  --    50 лвк
 	
 	
 	then
