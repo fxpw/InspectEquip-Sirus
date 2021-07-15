@@ -1379,6 +1379,8 @@ function IE:AddItems(tab, padding,event,unit)
 	 
 	 elseif   (item.enchant == 3819) then  -- хил голова
 	 suffix = " - Есть чарка"..suffix
+	 elseif   (item.enchant == 3830) then  -- хил плечи наложка
+	 suffix = " - Есть чарка"..suffix
 	 
 	 elseif   (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
 	 suffix = " - Есть чарка"..suffix
@@ -1647,6 +1649,8 @@ function IE:AddItems(tab, padding,event,unit)
 	 suffix = suffix
 	 
 	  elseif   (item.enchant == 3819) then  -- хил голова
+	 suffix = suffix
+	 elseif   (item.enchant == 3830) then  -- хил плечи кожевка
 	 suffix = suffix
 	 
 	 elseif   (item.enchant == 9004) and (not noEnchantWarningSlots[item.slot])then -- спд вын ноги бк
