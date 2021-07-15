@@ -15060,6 +15060,7 @@ InspectEquip_ItemSources = {
 	[7] = "kel",
 	[22] = "kel",
 	[24] = "kel",
+	[14] = "kel",
 	[21] = "kel",
 	[35221] = "kel",
 	[55262] = "kel",
