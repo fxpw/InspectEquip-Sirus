@@ -287,12 +287,9 @@ function IE:OnDisable()
   if hooked then
     hooked = false
     self:Unhook("InspectFrame_UnitChanged")
-	 self:Unhook("InspectFrame_UnitChanged")
   end
   self:UnhookAll()
   self:UnregisterEvent("UNIT_INVENTORY_CHANGED")
-  
-  
   self:CancelAllTimers()
   WIN:Hide()
 end
@@ -385,11 +382,6 @@ function IE:GetExaminerCache(unit)
   return Examiner_Cache and Examiner_Cache[self:FullUnitName(name, realm)]
 end
 
-local k = 0
-local Arcanesignslack = {}
-local Arcanesignslack2 = {}
-local max = -math.huge
-
 function IE:InspectUnit(unit, ...)
   origInspectUnit(unit, ...)
 
@@ -400,32 +392,8 @@ function IE:InspectUnit(unit, ...)
       hooked = true
       self:SecureHook("InspectFrame_UnitChanged")
     end 
-	-- k = k + 1
-    -- if k > 1 then
-    -- self:Inspect(unit)
-	-- k = 0
-	local playerName = UnitName("target")
-	table.insert(Arcanesignslack, playerName)
-    for i,v in ipairs(Arcanesignslack) do
-    Arcanesignslack2[v] = (Arcanesignslack2[v] or 0 ) +1
-    end
-    for v,k in pairs(Arcanesignslack2) do 
-    max = math.max(max, k)
-		--print(v,k)
-		if max == 2 then
-		Arcanesignslack = {}
-		Arcanesignslack2 = {}
-		max = 0
-		table.insert(Arcanesignslack, playerName)
-		table.insert(Arcanesignslack, playerName)
-		end
-        if max >= 2 then
-        self:Inspect(unit) 
-		Arcanesignslack = {}
-		Arcanesignslack2 = {}
-		max = 0
-        end
-	end
+	
+	self:Inspect(unit)
   end
 end
 -- local clock = os.clock
@@ -436,12 +404,7 @@ end
 
 function IE:InspectFrame_UnitChanged()
   if InspectFrame.unit and InspectEquipConfig.inspectWindow then
-   local playerName = UnitName("target")
-   table.insert(Arcanesignslack, playerName)
-   table.insert(Arcanesignslack, playerName)
-   --print(playerName .. " 1")
-   WIN:Hide()  
-   CharacterFrame:Hide() 
+	self:InspectUnit(InspectFrame.unit) 
   else
     WIN:Hide()
   end
@@ -479,12 +442,13 @@ end
 function IE:UNIT_INVENTORY_CHANGED(event, unit)
   if (unit == "player") and (WIN:IsVisible() or autoHidden) and (WIN:GetParent() == CharacterFrame) then
     IE:Inspect("player")
-	InspectUnit("target")
-	IE:Inspect("player")
+  elseif(unit == "target") and (WIN:IsVisible() or autoHidden) and (WIN:GetParent() == InspectFrame) then
+    IE:Inspect("target")
   end
 end
 
 function IE:Inspect(unit, entry)
+  self.UpdateInspectTimer = C_Timer:NewTicker(0.001, function()
   local unitName, unitRealm
   cached = (unit == "cache")
 
@@ -635,6 +599,7 @@ function IE:Inspect(unit, entry)
   else
     WIN:Hide()
   end
+  end,5)
 end
 
 function IE:AddCats(tab, prefix)
