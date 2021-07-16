@@ -1317,6 +1317,8 @@ function IE:AddItems(tab, padding,event,unit)
 	 elseif   (item.enchant == 4176) then -- хант крит
 	 suffix = " - Есть чарка"..suffix
 	 
+	  elseif   (item.enchant == 7018) then -- перчи лвк
+	 suffix = " - Есть чарка"..suffix
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
 	 suffix = " - Есть чарка"..suffix
 	 
@@ -1586,6 +1588,8 @@ function IE:AddItems(tab, padding,event,unit)
 	  if   (item.enchant == 3817) and (not noEnchantWarningSlots[item.slot]) then -- голова  мдд
 	 suffix = suffix
 	 elseif   (item.enchant == 4176) then -- хант крит
+	 suffix = suffix
+	  elseif   (item.enchant == 7018) then -- перчи лвк
 	 suffix = suffix
 	 
 	 elseif   (item.enchant == 9010) and (not noEnchantWarningSlots[item.slot])then -- плечи мдд
