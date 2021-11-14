@@ -19,6 +19,7 @@ local noEnchantWarningSlots = {
   ["Trinket0Slot"] = true, ["Trinket1Slot"] = true, ["RangedSlot"] = true,["SecondaryHandSlot"] = true,
 
 }
+--
     local lefthand = {
   ["SecondaryHandSlot"] = true,
 
@@ -416,6 +417,16 @@ function IE:PaperDollFrame_OnShow()
     IE:SetParent(CharacterFrame)	
 	IE:Inspect("player")
   end
+-- local slotId = GetInventorySlotInfo("MainHandSlot")
+--/dump local link = GetInventoryItemLink("player", 5)
+--local itemId, enchantId, gem1, gem2, gem3, gem4,gem5,gem6 = strsplit(":",link)
+--print (itemId, enchantId, gem1, gem2, gem3, gem4,gem5,gem6 )
+--end
+-- /run for i=1,GameTooltip:NumLines()do local mytext=_G["GameTooltipTextLeft"..i] local text=mytext:GetText() print(text)end
+
+-- /dump  GetInventoryItemLink("Player", 5)
+
+-- /dump ItemTextGetText("player", 5)
 end
 
 function IE:PaperDollFrame_OnHide()
@@ -510,13 +521,13 @@ function IE:Inspect(unit, entry)
 
   for _,slot in pairs(slots) do
     local itemLink = getItem(slot)
-	-- print (itemLink)
-	-- print( itemLink, lootTable, boss, cost, slot,enchantId)
+--	print (itemLink)
+--	print( itemLink, lootTable, boss, cost, slot,enchantId)
     if itemLink then
       local sources = self:FindItem(itemLink, InspectEquipConfig.showUnknown)
       if sources then
         local src, subsrc, lootTable, boss, cost, setname = unpack(sources[1])
-		-- print (src, subsrc, lootTable, boss, cost, setname)
+--		 print (src, subsrc, lootTable, boss, cost, setname)
         local enchantId = tonumber(itemLink:match("Hitem:%d+:(%d+):"))
         itemsFound = true
 		---------------------------------------------------------------------сокеты
@@ -2049,3 +2060,19 @@ function IE.Line_OnClick(row, button)
   end
 end
 
+
+
+--[[
+/run local c = GetInventoryItemLink("target",GetInventorySlotInfo("MainHandSlot")) local var1, var2, var3, var4, var5, var6, itemType = GetItemInfo(c) print(var1, var2, var3, var4, var5, var6, itemType)
+
+/run InspectUnit("target") local itemLink = GetInventoryItemLink("target", 5) print(itemLink) InspectFrame:Hide()
+
+getItem
+/run local get = strsplit(" ",GetInventoryItemLink("target", GetInventorySlotInfo("ChestSlot"))) print(get)
+
+/run local slotId = GetInventorySlotInfo("ChestSlot")
+local link = GetInventoryItemLink("target", slotId)
+local itemId, enchantId, gem1, gem2, gem3, gem4 = link:match("item:(%d+):(%d+):(%d+):(%d+):(%d+):(%d+)")
+print (itemId, enchantId, gem1, gem2, gem3, gem4)
+
+]]
