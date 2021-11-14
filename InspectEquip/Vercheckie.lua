@@ -42,7 +42,7 @@ do
             local  timenow = time()
             if message and (message > ver) then 
                 if timenow - spamt >= timeneedtospam then              
-                    print("|cff1784d1".."InspectEquip".."|r".." (".."|cffff0000"..ver.."|r"..") устарел. Вы можете загрузить последнюю версию (".."|cff00ff00"..message.."|r"..") из ".."|cffffcc00".."https://github.com/fxpw/RaidBrowser-ru-for-sirus".."|r")
+                    print("|cff1784d1".."InspectEquip".."|r".." (".."|cffff0000"..ver.."|r"..") устарел. Вы можете загрузить последнюю версию (".."|cff00ff00"..message.."|r"..") из ".."|cffffcc00".."https://github.com/fxpw/InspectEquip-Sirus".."|r")
                     -- spamt = time()
                     spamt = time()
                 end
