@@ -65,6 +65,9 @@ local tooltipTimer = nil
 local valorPoints = "Valor points"
 local outlandToken = "Outland war Token"
 
+local bdcount
+local jewh
+
 --------------------------------------------------------------------------------------
 
 InspectEquipConfig = {}
@@ -614,10 +617,12 @@ function IE:Inspect(unit, entry)
   end
 
   if itemsFound then
+    bdcount = 0
+    jewh = 0
     self:AddCats(items, "")
     if calciv and iCount > 0 then
       local avgLvl = iLevelSum / iCount
-      AVGIL:SetText(L["Avg. Item Level"] .. ": " .. string.format("%.2f", avgLvl))
+      AVGIL:SetText(L["Avg. Item Level"] .. ": " .. string.format("%.2f", avgLvl) .."|cffFF7110 ЧБ|r: " .. bdcount .."|cffFF7110 ЮВх|r: ".. jewh )
       AVGIL:Show()
     else
       AVGIL:Hide()
@@ -794,10 +799,20 @@ function IE:AddItems(tab, padding,event,unit)
 						suffixsoc[s] = " бк "
 					elseif item["gemts"..s] == socetsiscl["gemts"..s] then
 						suffixsoc[s] = "|cffff0000  лк |r"
-					elseif (item["gemts"..s] < 4000) and (item["gemts"..s] > 0 ) then
+					elseif (item["gemts"..s] > 0 ) and (item["gemts"..s] < 4000) then
 						suffixsoc[s] = "|cffff0000  лк |r"
-					elseif (item["gemts"..s] > 4000) then
+					elseif (item["gemts"..s] > 4000) and (item["gemts"..s] < 8000) then
 						suffixsoc[s] = " бк "
+          elseif (item["gemts"..s] > 8000) and (item["gemts"..s] < 8026) then
+						suffixsoc[s] = "|cffc000ff метаБК |r"
+          elseif (item["gemts"..s] > 8025) and (item["gemts"..s] < 9000) then
+            suffixsoc[s] = "|cffFF7110 ЧБ |r"
+            bdcount = bdcount + 1
+          elseif (item["gemts"..s] > 9000) and (item["gemts"..s] < 10000) then
+            suffixsoc[s] = "|cffc000ff БКп |r"
+          elseif (item["gemts"..s] > 10000) then
+            suffixsoc[s] = "|cffFF7110 ЮВх |r"
+            jewh = jewh + 1
 					end
 				end
 			end
@@ -825,10 +840,20 @@ function IE:AddItems(tab, padding,event,unit)
 						suffixsoc[s] = " "
 					elseif item["gemts"..s] == socetsiscl["gemts"..s] then
 						suffixsoc[s] = "|cffff0000  лк |r"
-					elseif (item["gemts"..s] < 4000) and (item["gemts"..s] > 0 ) then
+					elseif (item["gemts"..s] > 0 ) and (item["gemts"..s] < 4000) then
 						suffixsoc[s] = "|cffff0000  лк |r"
-					elseif (item["gemts"..s] > 4000) then
+					elseif (item["gemts"..s] > 4000) and (item["gemts"..s] < 8000) then
 						suffixsoc[s] = " бк "
+          elseif (item["gemts"..s] > 8000) and (item["gemts"..s] < 8026) then
+						suffixsoc[s] = "|cffc000ff метаБК |r"
+          elseif (item["gemts"..s] > 8025) and (item["gemts"..s] < 9000) then
+            suffixsoc[s] = "|cffFF7110 ЧБ |r"
+            bdcount = bdcount + 1
+          elseif (item["gemts"..s] > 9000) and (item["gemts"..s] < 10000) then
+            suffixsoc[s] = "|cffc000ff БКп |r"
+          elseif (item["gemts"..s] > 10000) then
+            suffixsoc[s] = "|cffFF7110 ЮВх |r"
+            jewh = jewh + 1
 					end
 				end
 			end
