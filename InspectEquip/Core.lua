@@ -458,7 +458,7 @@ function IE:UNIT_INVENTORY_CHANGED(event, unit)
 end
 
 function IE:Inspect(unit, entry)
-  self.UpdateInspectTimer = C_Timer:NewTicker(0.001, function()
+  self.UpdateInspectTimer = C_Timer:NewTicker(0.002, function()
   local unitName, unitRealm
   cached = (unit == "cache")
 
@@ -518,63 +518,80 @@ function IE:Inspect(unit, entry)
   local calciv = InspectEquipConfig.showAvgItemLevel
   local iLevelSum, iCount = 0,0
 
-  for _,slot in pairs(slots) do
-    local itemLink = getItem(slot)
---	print (itemLink)
---	print( itemLink, lootTable, boss, cost, slot,enchantId)
-    if itemLink then
-      local sources = self:FindItem(itemLink, InspectEquipConfig.showUnknown)
-      if sources then
-        local src, subsrc, lootTable, boss, cost, setname = unpack(sources[1])
---		 print (src, subsrc, lootTable, boss, cost, setname)
-        local enchantId = tonumber(itemLink:match("Hitem:%d+:(%d+):"))
-        itemsFound = true
-		---------------------------------------------------------------------сокеты
+	for _,slot in pairs(slots) do
+	local itemLink = getItem(slot)
+	--	print (itemLink)
+	--	print( itemLink, lootTable, boss, cost, slot,enchantId)
+		if itemLink then
+			local sources = self:FindItem(itemLink, InspectEquipConfig.showUnknown)
+			if sources then
+			local src, subsrc, lootTable, boss, cost, setname = unpack(sources[1])
+		--		 print (src, subsrc, lootTable, boss, cost, setname)
+			local enchantId = tonumber(itemLink:match("Hitem:%d+:(%d+):"))
+			itemsFound = true
+			---------------------------------------------------------------------сокеты
 
 
-		-- local _, _, _, gem1, gem2, gem3, gem4 = strsplit(":", strmatch(itemLink, "|H(.-)|h"))
-				-- local numFilledSockets = (tonumber(gem1) or 0) + (tonumber(gem2) or 0) + (tonumber(gem3) or 0) + (tonumber(gem4) or 0)
-				local kolvo = GetNumSockets(itemLink)
+			-- local _, _, _, gem1, gem2, gem3, gem4 = strsplit(":", strmatch(itemLink, "|H(.-)|h"))
+					-- local numFilledSockets = (tonumber(gem1) or 0) + (tonumber(gem2) or 0) + (tonumber(gem3) or 0) + (tonumber(gem4) or 0)
+					local kolvo = GetNumSockets(itemLink)
 
-				local _, _, _, gem1, gem2, gem3, gem4 = strsplit(":", strmatch(itemLink, "|H(.-)|h"))
-				local gemts1 = (tonumber(gem1) or 0)
-				-- local perehod1 = numFilledSockets1
-				-- local unsocet1 =  perehod1
+					local _, _, _, gem1, gem2, gem3, gem4 = strsplit(":", strmatch(itemLink, "|H(.-)|h"))
+					local gemts1 = (tonumber(gem1) or 0)
+					-- local perehod1 = numFilledSockets1
+					-- local unsocet1 =  perehod1
 
-				local gemts2 = (tonumber(gem2) or 0)
-				-- local perehod2 = numFilledSockets2
-				-- local unsocet2 =  perehod2
+					local gemts2 = (tonumber(gem2) or 0)
+					-- local perehod2 = numFilledSockets2
+					-- local unsocet2 =  perehod2
 
-				local gemts3 = (tonumber(gem3) or 0)
-				-- local perehod3 = numFilledSockets3
-				-- local unsocet3 =  perehod3
+					local gemts3 = (tonumber(gem3) or 0)
+					-- local perehod3 = numFilledSockets3
+					-- local unsocet3 =  perehod3
 
-				local gemts4 = (tonumber(gem4) or 0)
-				-- local perehod4 = numFilledSockets4
-				-- local unsocet4 =  perehod4
-
-
-				-- gem1= (tonumber(gem1) or 0)
+					local gemts4 = (tonumber(gem4) or 0)
+					-- local perehod4 = numFilledSockets4
+					-- local unsocet4 =  perehod4
 
 
-		---------------------------------------------------------------------сокеты
-        if items[src] == nil then
-          items[src] = {count = 0}
-        end
-        cat = items[src]
-        if subsrc then
-			-- subcategory
-			if lootTable == L["Heroic"] then
-				subsrc = subsrc .. " (" .. lootTable .. ")"
+					-- gem1= (tonumber(gem1) or 0)
+
+
+			---------------------------------------------------------------------сокеты
+			if items[src] == nil then
+				items[src] = {count = 0}
 			end
-			if cat[subsrc] == nil then
-				cat[subsrc] = {count = 0, hasItems = true}
-			end
-			cat.count = cat.count + 1
-			local subcat = cat[subsrc]
-			subcat.count = subcat.count + 1
-			subcat[subcat.count] = {
-				link = itemLink,
+			cat = items[src]
+			if subsrc then
+				-- subcategory
+				if lootTable == L["Heroic"] then
+					subsrc = subsrc .. " (" .. lootTable .. ")"
+				end
+				if cat[subsrc] == nil then
+					cat[subsrc] = {count = 0, hasItems = true}
+				end
+				cat.count = cat.count + 1
+				local subcat = cat[subsrc]
+				subcat.count = subcat.count + 1
+				subcat[subcat.count] = {
+					link = itemLink,
+					lootTable = lootTable,
+					boss = boss,
+					cost = cost,
+					slot = slot,
+					enchant = enchantId,
+					gemts1 = gemts1,
+					gemts2 = gemts2,
+					gemts3 = gemts3,
+					gemts4 = gemts4,
+					kolvo = kolvo
+				}
+				-- print( itemLink, lootTable, boss, cost, slot,enchantId)
+			else
+				-- no subcategory
+				cat.hasItems = true
+				cat.count = cat.count + 1
+				cat[cat.count] = {link = itemLink,
 				lootTable = lootTable,
 				boss = boss,
 				cost = cost,
@@ -584,59 +601,50 @@ function IE:Inspect(unit, entry)
 				gemts2 = gemts2,
 				gemts3 = gemts3,
 				gemts4 = gemts4,
-				kolvo = kolvo
+				kolvo=kolvo
 			}
-		  -- print( itemLink, lootTable, boss, cost, slot,enchantId)
-        else
-          -- no subcategory
-          cat.hasItems = true
-          cat.count = cat.count + 1
-          cat[cat.count] = {link = itemLink,
-			lootTable = lootTable,
-			boss = boss,
-			cost = cost,
-			slot = slot,
-			enchant = enchantId,
-			gemts1 = gemts1,
-			gemts2 = gemts2,
-			gemts3 = gemts3,
-			gemts4 = gemts4,
-			kolvo=kolvo
-		}
-		  -- print( itemLink, lootTable, boss, cost, slot,enchantId)
-        end
-      end
-      if calciv then
-        local _,_,rar,lvl = GetItemInfo(itemLink)
-        if lvl then
-          iLevelSum = iLevelSum + lvl
-          iCount = iCount + 1
-        end
-      end
-    end
-  end
+				-- print( itemLink, lootTable, boss, cost, slot,enchantId)
+			end
+			end
+			if calciv then
+			local _,_,rar,lvl = GetItemInfo(itemLink)
+			if lvl then
+				iLevelSum = iLevelSum + lvl
+				iCount = iCount + 1
+			end
+			end
+		end
+	end
 
-  if itemsFound then
-    bdcount = 0
-    jewh = 0
-    self:AddCats(items, "")
-    if calciv and iCount > 0 then
-      local avgLvl = iLevelSum / iCount
-      AVGIL:SetText(L["Avg. Item Level"] .. ": " .. string.format("%.2f", avgLvl) .."|cffFF7110 ЧБ|r: " .. bdcount .."|cffFF7110 ЮВх|r: ".. jewh )
-      AVGIL:Show()
-    else
-      AVGIL:Hide()
-    end
-    self:FixWindowSize()
-    if WIN:GetParent() == CharacterFrame and (GearManagerDialog:IsVisible() or (OutfitterFrame and OutfitterFrame:IsVisible())) then
-      autoHidden = true
-    else
-      WIN:Show()
-    end
-  else
-    WIN:Hide()
-  end
-  end,5)
+	if itemsFound then
+	bdcount = 0
+	jewh = 0
+	self:AddCats(items, "")
+	if calciv and iCount > 0 then
+		local avgLvl = iLevelSum / iCount
+		if bdcount == 0 and jewh >=1 then
+			AVGIL:SetText(L["Avg. Item Level"] .. ": " .. string.format("%.2f", avgLvl) .."|cffFF7110 ЮВх|r: ".. jewh )
+			AVGIL:Show()
+		elseif bdcount >= 1 and jewh == 0 then
+			AVGIL:SetText(L["Avg. Item Level"] .. ": " .. string.format("%.2f", avgLvl) .."|cffFF7110 ЧБ|r: " .. bdcount )
+			AVGIL:Show()
+		else
+			AVGIL:SetText(L["Avg. Item Level"] .. ": " .. string.format("%.2f", avgLvl) .."|cffFF7110 ЧБ|r: " .. bdcount .."|cffFF7110 ЮВх|r: ".. jewh )
+			AVGIL:Show()
+		end
+	else
+		AVGIL:Hide()
+	end
+	self:FixWindowSize()
+	if WIN:GetParent() == CharacterFrame and (GearManagerDialog:IsVisible() or (OutfitterFrame and OutfitterFrame:IsVisible())) then
+		autoHidden = true
+	else
+		WIN:Show()
+	end
+	else
+		WIN:Hide()
+	end
+	end,5)
 end
 
 function IE:AddCats(tab, prefix)
@@ -660,7 +668,7 @@ function IE:AddCats(tab, prefix)
 end
 ----------------------------------------провер очки
 
-local socetsbk = { -------------бк сокеты
+local socetsbk = { ------------- сокеты с ювы 1 тир
 	[3734] = true,   -- 58 спд
 	[9022] = true,   --  42 спд
 	[3745] = true,   --   50 рпб
@@ -738,11 +746,68 @@ local enchantidscmn = { ----------- айди чарок с проверкой н
 	[3819] = true, ----------хил голова
 	[3830] = true, ----------хил плечи наложка
 	[3860] = true, ----------перчи инжа броня
-
 	[3790] = true, ---------- черная магия
 	[9011] = true, ----------спд мп5
 	[3859] = true, ----------плащ инжа
 	[3370] = true, ----------танк дк чарка ледяного жара
+  ----------------ty hayse
+	[3252]= true, -- 8 ко всем статам
+	[7028]= true, -- 15 ко всем вида сопрота
+	[3814]= true, -- 25 к сопрту от тёмной магии  30 к выносливости
+	[3811]= true, -- 20 к рейтингу уклонения и 15 к рейтингу защиты
+	[983 ]= true, -- 16 к ловкости
+	[3829]= true, -- 35 к ап
+	[3828]= true, -- 85 к ап
+	[2998]= true, -- 7 ко всем вида сопрота
+	[3822]= true, -- 55 к выносливости и 22 к ловкости
+	[3842]= true, -- 30 к выносливости и 25 к устойчивости
+	[3850]= true, -- 40 к выносливости
+	[1099]= true, -- 22 к ловкости
+	[3731]= true, -- Титановая цепь для оружия
+	[1147]= true, -- 18 к духу
+	[2326]= true, -- 23 к спд
+	[3719]= true, -- 50 к спд и 20 к духу
+	[3831]= true, -- 23 к хосте
+	[3246]= true, -- 28 к спд!
+	[3845]= true, -- 50 к ап
+	[2666]= true, -- 30 к инте
+	[3810]= true, -- 24 к спд и 15 к рейтингу криит удара
+	[3823]= true, --
+	[3328]= true, -- 75 к ап и 22 к рейтингу криит удара
+	[1603]= true, -- 44 к ап
+	[1597]= true, -- 32 к ап
+	[3808]= true, -- 40 к ап и 15 к рейтингу криит удара
+	[3232]= true, -- 15 к выносливости и 8% кскорости движения
+	[3824]= true, -- 24 к ап
+	[1900]= true, -- рыцарь
+	[1606]= true, -- 50 к ап
+	[2332]= true, -- 30 к спд
+	[1128]= true, -- 25 к инте
+	[3832]= true, -- 10 ко всем статам
+	[3721]= true, -- 50 к спд и 30 к выносливости
+
+	[2647]= true, -- 12 к силе
+	[3330]= true, -- 18 к выносливости
+	[3836]= true, -- 105 к спд и 12 мп5
+	[3855]= true, -- 69 к спд
+	[3834]= true, -- 63 к спд
+	[3853]= true, -- 40 к устойчивости и 28 к выносливости
+	[3607]= true, -- 40 к рейтингу скороси дальнего боя
+	[3854]= true, -- 81 к спд
+	[3243]= true, -- 35 к проникающей спосоности заклинаний
+	[1119]= true, -- 16 к инте
+	[3003]= true, -- 35 к ап и 16 к меткости
+	[1600]= true, -- 36 к ап
+	[3234]= true, -- 20 к меткости
+	[3837]= true, -- 90 к уклонению и 23 к защите
+	[7030]= true, -- 20 к мастерству
+	[7003]= true, -- 15 к духу и 4% снижение угрозы
+	[3872]= true, -- 50 к спд и 20 к духу
+	[3826]= true, -- 12 к меткости и 12 к рейтингу криит удара
+	[3873]= true, -- 50 к спд и 30 к выносливости
+	[3369]= true, -- Руна оплавленного ледника
+	[3608]= true, -- 40 к рейтингу крит удара в дальнем бою
+	[3718]= true, -- 35 к спд и 12 к духу
 
 }
 local enchantidsnch = { ----------- айди чарок без проверки на слот
@@ -754,6 +819,7 @@ local enchantidsnch = { ----------- айди чарок без проверки 
 	[7041] = true, ----------пушка метк криит
 	[7024] = true, ----------щит вын
 	[4176] = true, ----------хант крит
+  	[3368] = true, -- Руна павшего рыцаря
 }
 local enchantidsring = { --------- кольца
 	[3839] = true, ----------
@@ -781,6 +847,7 @@ local enchantidspvp = { ----------- айди чарок пвп
 local enchantidstolgorod = {
 	[10124] = true,  -- дар искателя
 	[10119] = true,-- дар травника
+	[10120] = true, -- дар рудокопа
 }
 function IE:AddItems(tab, padding,event,unit)
 	for i = 1, tab.count do
@@ -788,72 +855,70 @@ function IE:AddItems(tab, padding,event,unit)
 		local suffix = ""
 		-------------------------------------------------проверка сокетов----------------------------------------------------------
 
-		if InspectEquipConfig.soketc and InspectEquipConfig.soketcpokaz   then
+		if InspectEquipConfig.soketc and InspectEquipConfig.soketcpokaz   then ------------- плказывать ли сокеты
 			local suffixsoc = {}
 
 			if item.kolvo >= 1 then
 				for s = 1,item.kolvo do
 					if item["gemts"..s] == 0 then
-						suffixsoc[s] = "|cffff0000  нет |r"
+						suffixsoc[s] = "|cffff0000  Нет |r"
 					elseif item["gemts"..s] == socetsbk["gemts"..s] then
-						suffixsoc[s] = " бк "
+						suffixsoc[s] = " ЮВод "
 					elseif item["gemts"..s] == socetsiscl["gemts"..s] then
-						suffixsoc[s] = "|cffff0000  лк |r"
+						suffixsoc[s] = "|cff1293f4  ЛК |r"
 					elseif (item["gemts"..s] > 0 ) and (item["gemts"..s] < 4000) then
-						suffixsoc[s] = "|cffff0000  лк |r"
+						suffixsoc[s] = "|cff1293f4  ЛК |r"
 					elseif (item["gemts"..s] > 4000) and (item["gemts"..s] < 8000) then
-						suffixsoc[s] = " бк "
-          elseif (item["gemts"..s] > 8000) and (item["gemts"..s] < 8026) then
+						suffixsoc[s] = " БК "
+					elseif (item["gemts"..s] > 8000) and (item["gemts"..s] < 8026) then
 						suffixsoc[s] = "|cffc000ff метаБК |r"
-          elseif (item["gemts"..s] > 8025) and (item["gemts"..s] < 9000) then
-            suffixsoc[s] = "|cffFF7110 ЧБ |r"
-            bdcount = bdcount + 1
-          elseif (item["gemts"..s] > 9000) and (item["gemts"..s] < 10000) then
-            suffixsoc[s] = "|cffc000ff БКп |r"
-          elseif (item["gemts"..s] > 10000) then
-            suffixsoc[s] = "|cffFF7110 ЮВх |r"
-            jewh = jewh + 1
+					elseif (item["gemts"..s] > 8025) and (item["gemts"..s] < 9000) then
+						suffixsoc[s] = "|cffFF7110 ЧБ |r"
+						bdcount = bdcount + 1
+					elseif (item["gemts"..s] > 9000) and (item["gemts"..s] < 10000) then
+						suffixsoc[s] = "|cffc000ff БКп |r"
+					elseif (item["gemts"..s] > 10000) then
+						suffixsoc[s] = "|cffFF7110 ЮВх |r"
+						jewh = jewh + 1
 					end
 				end
 			end
-
 			for st = 1,#suffixsoc do
 				if item["gemts"..st] == 0 then
 					item["gemts"..st] = " "
 				end
 			end
-
 			for sst = 1,#suffixsoc do
-        if suffixsoc[sst] then
-			  	suffix = suffix.."  "..suffixsoc[sst]
-        end
+				if suffixsoc[sst] then
+						suffix = suffix.."  "..suffixsoc[sst]
+				end
 			end
 
-		elseif InspectEquipConfig.soketc and not InspectEquipConfig.soketcpokaz   then
-      local suffixsoc = {}
+		elseif InspectEquipConfig.soketc and not InspectEquipConfig.soketcpokaz   then            ------------------ не показывать сокеты когда стоят
+			local suffixsoc = {}
 
 			if item.kolvo >= 1 then
 				for s = 1,item.kolvo do
 					if item["gemts"..s] == 0 then
-						suffixsoc[s] = "|cffff0000  нет |r"
+						suffixsoc[s] = "|cffff0000  Нет |r"
 					elseif item["gemts"..s] == socetsbk["gemts"..s] then
 						suffixsoc[s] = " "
 					elseif item["gemts"..s] == socetsiscl["gemts"..s] then
-						suffixsoc[s] = "|cffff0000  лк |r"
+						suffixsoc[s] = " "
 					elseif (item["gemts"..s] > 0 ) and (item["gemts"..s] < 4000) then
-						suffixsoc[s] = "|cffff0000  лк |r"
+						suffixsoc[s] = " "
 					elseif (item["gemts"..s] > 4000) and (item["gemts"..s] < 8000) then
-						suffixsoc[s] = " бк "
-          elseif (item["gemts"..s] > 8000) and (item["gemts"..s] < 8026) then
-						suffixsoc[s] = "|cffc000ff метаБК |r"
-          elseif (item["gemts"..s] > 8025) and (item["gemts"..s] < 9000) then
-            suffixsoc[s] = "|cffFF7110 ЧБ |r"
-            bdcount = bdcount + 1
-          elseif (item["gemts"..s] > 9000) and (item["gemts"..s] < 10000) then
-            suffixsoc[s] = "|cffc000ff БКп |r"
-          elseif (item["gemts"..s] > 10000) then
-            suffixsoc[s] = "|cffFF7110 ЮВх |r"
-            jewh = jewh + 1
+						suffixsoc[s] = " "
+					elseif (item["gemts"..s] > 8000) and (item["gemts"..s] < 8026) then
+						suffixsoc[s] = " "
+					elseif (item["gemts"..s] > 8025) and (item["gemts"..s] < 9000) then
+						suffixsoc[s] = " "
+						bdcount = bdcount + 1
+					elseif (item["gemts"..s] > 9000) and (item["gemts"..s] < 10000) then
+						suffixsoc[s] = " "
+					elseif (item["gemts"..s] > 10000) then
+						suffixsoc[s] = " "
+						jewh = jewh + 1
 					end
 				end
 			end
@@ -864,11 +929,11 @@ function IE:AddItems(tab, padding,event,unit)
 				end
 			end
 
-			for sst = 1,#suffixsoc do
-        if suffixsoc[sst] then
-			  	suffix = suffix.."  "..suffixsoc[sst]
-        end
+				for sst = 1,#suffixsoc do
+			if suffixsoc[sst] then
+					suffix = suffix.."  "..suffixsoc[sst]
 			end
+				end
 		end
 		-------------------------------------------------проверка чарок----------------------------------------------------------
 
